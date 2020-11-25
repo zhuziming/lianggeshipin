@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="${indexpath}/css/boots/bootstrap.min.css">
+<script src="${indexpath}/js/jquery.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="jumbotron">
+	  <h1 class="display-4">元气满满的一天</h1>
+	  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+	  <hr class="my-4">
+	  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+	  <a class="btn btn-primary btn-lg" href="${indexpath}" role="button">回前台首页</a>
+	  <a class="btn btn-primary btn-lg" href="${indexpath}/manage/index.action" role="button">回后台首页</a>
+	</div>
+	<div class="alert alert-primary" role="alert">
+	 ${animated.animatedName}
+	</div>
+	<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">哪一集</th>
+      <th scope="col">标题</th>
+      <th scope="col">视频地址</th>
+      <th scope="col">图片地址</th>
+    </tr>
+  </thead>
+  <form action="${indexpath}/manage/addPlot.action">
+  			<input type="hidden" name="animatedID" value="${animated.id}">
+	  <tbody>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which1"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName1"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl1"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl1"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which2"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName2"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl2"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl2"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which3"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName3"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl3"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl3"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which4"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName4"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl4"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl4"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which5"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName5"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl5"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl5"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which6"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName6"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl6"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl6"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which7"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName7"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl7"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl7"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which8"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName8"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl8"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl8"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which9"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName9"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl9"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl9"  ></td>
+	    </tr>
+	    <tr>
+	      <td><input type="number" class="form-control is-valid" name="which10"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="plotName10"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrl10"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="imgUrl10"  ></td>
+	    </tr>
+	    <tr id="lineLast">
+	      <td></td>
+	      <td></td>
+	      <td><button class="btn btn-primary" type="submit">提交</button></td>
+	      <td></td>
+	    </tr>
+	  </tbody>
+  </form>
+</table>
+</div>
+</body>
+</html>

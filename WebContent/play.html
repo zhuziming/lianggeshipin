@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="http://localhost:8080/lianggeshipin/css/boots/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:8080/lianggeshipin/css/video-js.css">
+<title>Insert title here</title>
+<script src="http://localhost:8080/lianggeshipin/js/jquery.min.js"></script>
+<script src="http://localhost:8080/lianggeshipin/js/video.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+	
+	<div class="jumbotron" style="background-image: url('http://localhost:8080/lianggeshipin/image/index_back_3.jpg')">
+		<h1 class="display-4">小猪佩奇第一季</h1>
+		<p class="lead">猪爸爸和猪妈妈吓泥坑里玩</p>
+		<hr class="my-4">
+		<a class="btn btn-primary btn-lg" href="http://localhost:8080/lianggeshipin" role="button">回首页</a>
+	</div>
+	
+	<div class="alert alert-success" role="alert">
+	  	小猪佩奇第一季 第1集 中文 英文 对照学习  对照学习 对照学习
+	</div>
+	<div class="row">
+		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+			<div class="alert alert-primary" role="alert">
+			  	中文 泥坑
+			</div>
+			<video  id="my-video1" class="video-js" controls preload="auto"  poster="http://localhost:8080/lianggeshipin/image/test.jpg">
+				<source src="http://localhost:8080/lianggeshipin/mp4/test.mp4" type="video/mp4">
+		  	</video>
+		</div>
+		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
+			<div class="alert alert-primary" role="alert">
+			  	英文 泥坑
+			</div>
+			<video  id="my-video2" class="video-js" controls preload="auto"  poster="http://localhost:8080/lianggeshipin/image/test.jpg">
+				<source src="http://localhost:8080/lianggeshipin/mp4/test.mp4" type="video/mp4">
+		  	</video>
+		</div>
+	</div>
+	<div class="alert alert-primary" role="alert">
+	  	商品推荐
+	</div>
+	<div class="row" id="intro">
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
+			<a href="#">
+				<img class="img-fluid" src="http://localhost:8080/lianggeshipin/image/test.jpg"/>
+				<p>点读机</p>
+			</a>
+		</div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
+			<a href="#">
+				<img class="img-fluid" src="http://localhost:8080/lianggeshipin/image/test.jpg"/>
+				<p>点读机</p>
+			</a>
+		</div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
+			<a href="#">
+				<img class="img-fluid" src="http://localhost:8080/lianggeshipin/image/test.jpg"/>
+				<p>点读机</p>
+			</a>
+		</div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
+			<a href="#">
+				<img class="img-fluid" src="http://localhost:8080/lianggeshipin/image/test.jpg"/>
+				<p>点读机</p>
+			</a>
+		</div>
+	</div>
+	<div class="alert alert-primary" role="alert">
+	  	选集
+	</div>
+	<div class="row">
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-light">第一集：泥坑</button></div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-secondary">第二集：爸爸的鞋子</button></div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-light">第三集：妈妈的样子</button></div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-light">第四集：乔治</button></div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-light">第一集：泥坑</button></div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-light">第二集：爸爸的鞋子</button></div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-light">第三集：妈妈的样子</button></div>
+		<div class="col-xl-3 col-lg-3 col-sm-4 col-6"><button type="button" class="btn btn-light">第四集：乔治</button></div>
+	</div>
+	<div class="alert alert-primary" role="alert">
+	  	故事情节
+	</div>
+	<div class="jumbotron">
+		  <h1 class="display-4">泥坑</h1>
+		  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+		  <hr class="my-4">
+		  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+		  
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	var myPlayer = videojs('my-video1',{ autoplay: true,fluid: true }, function () { });
+	var myPlayer = videojs('my-video2',{ autoplay: false,fluid: true }, function () { });
+</script>

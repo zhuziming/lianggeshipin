@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lianggeshipin.www.dao.IAnimatedDao">
+    
+    <insert id="add" parameterType="com.lianggeshipin.www.model.Animated" keyProperty="id" useGeneratedKeys="true">
+    	insert animated(id,animated_name,url) VALUES(#{id},#{animatedName},#{url})
+    </insert>
+    
+    <delete id="del" parameterType="int">
+    	DELETE FROM animated where id=#{id}
+    </delete>
+    
+    <update id="up" parameterType="com.lianggeshipin.www.model.Animated">
+    	UPDATE animated set animated_name=#{animatedName},url=#{url} where id=#{id}
+    </update>
+    
+    <select id="queOne" parameterType="int" resultType="com.lianggeshipin.www.model.Animated">
+    	SELECT id,animated_name AS animatedName,url from animated WHERE id=#{id};
+    </select>
+    
+    <select id="queList" resultType="com.lianggeshipin.www.model.Animated">
+    	SELECT id,animated_name AS animatedName,url from animated 
+    </select>
+    
+</mapper>
