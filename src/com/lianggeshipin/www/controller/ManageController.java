@@ -31,6 +31,7 @@ public class ManageController {
 	private IPlotService plotService;
 	
 	
+	
 	@RequestMapping("/index.action")
 	public String indexPage(Model model){
 		InitUtil.iniSystem(model);
@@ -135,6 +136,9 @@ public class ManageController {
 				p.setVideoUrl(videoUrl);
 				p.setImgUrl(imgUrl);
 				plotService.add(p);
+				System.out.println("animatedID : " + animatedID);
+				System.out.println("plotName : " + plotName);
+				System.out.println("plotName : " + plotName);
 			}
 		}
 		
@@ -260,4 +264,29 @@ public class ManageController {
 		}
 		return "成功";
 	}
+	
+	@RequestMapping("/createBaiduXml.action")
+	@ResponseBody
+	public String createBaiduXml(){
+		try{
+			List<Animated> AniList = animatedService.queList();
+			List<Plot> plotList = new ArrayList<Plot>();
+			for (Animated animated : AniList) {
+				plotList.addAll(plotService.queListByAnimatedID(animated.getId()));
+			}
+			FreeMarkerUtil.createWebMapXML(plotList);
+			return "成功";
+		}catch(Exception e){
+			e.printStackTrace();
+			return "失败";
+		}
+		
+	}
+	
+	@RequestMapping("/test.action")
+	@ResponseBody
+	public String test(){
+		return "测试连通";
+	}
+	
 }

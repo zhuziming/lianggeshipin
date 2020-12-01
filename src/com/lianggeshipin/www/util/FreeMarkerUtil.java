@@ -195,4 +195,47 @@ public class FreeMarkerUtil {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	/**
+	 * @desctiption 创建百度推送文件xml sitemap_example.xml
+	 * @author zhuziming
+	 * @time 2020年10月12日下午2:56:25
+	 */
+	public static boolean createWebMapXML(List<Plot> list){
+		
+		// 准备数据
+		Map<String ,Object> data = new HashMap<String, Object>();
+		String indexpath = PropertiesUtil.getValue("system.properties", "indexpath");
+		String imgpath = PropertiesUtil.getValue("system.properties", "imgpath");
+		String csspath = PropertiesUtil.getValue("system.properties", "csspath");
+		String jspath = PropertiesUtil.getValue("system.properties", "jspath");
+		String projectPath = PropertiesUtil.getValue("system.properties", "projectPath");
+		String freeMarkerFtlpath = PropertiesUtil.getValue("system.properties", "freeMarkerFtlpath");
+		
+		data.put("indexpath", indexpath);
+		data.put("imgpath", imgpath);
+		data.put("csspath", csspath);
+		data.put("jspath", jspath);
+		data.put("PlotList", list);
+
+		
+		// 得到ftl模版
+		Template tmp = FreeMarkerUtil.getTemplate(freeMarkerFtlpath,"front/sitemap_example_xml.ftl");
+		// 得到生成对象
+		Writer writer = FreeMarkerUtil.getWriter(projectPath+"/sitemap_example.xml");	
+		try {
+			// 生成网页
+			tmp.process(data, writer);
+			// 清空缓存
+			writer.flush();
+			writer.close();
+		} catch (TemplateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
 }

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>${(plot.title)!""}</title>
+${(plot.meta)!""}
 <link rel="stylesheet" href="${csspath}/lianggeshipin.css">
 <link rel="stylesheet" href="${csspath}/boots/bootstrap.min.css">
 <link rel="stylesheet" href="${csspath}/video-js.css">
-<title>Insert title here</title>
+<link rel="shortcut icon" type="favicon.ico" href="${imgpath}/lianggeshipin.ico">
 <script src="${jspath}/jquery.min.js"></script>
 <script src="${jspath}/video.min.js"></script>
+<script src="${jspath}/baidu.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -82,6 +84,9 @@
 
 	</div>
 </div>
+<footer class="blog-footer">
+	  <p><a class="alert alert-light" target="_blank" href="http://www.miitbeian.gov.cn">豫ICP备2020033396</a></p>
+</footer>
 </body>
 </html>
 <script type="text/javascript">

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="http://localhost:8080/lianggeshipin/css/boots/bootstrap.min.css">
-<script src="http://localhost:8080/lianggeshipin/js/jquery.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="${csspath}/boots/bootstrap.min.css">
+<script src="${jspath}/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>

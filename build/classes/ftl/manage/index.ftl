@@ -20,6 +20,7 @@
 	  <li class="list-group-item"><a href="${indexpath}/manage/addAnimatedPage.action">添加动漫名称</a></li>
 	  <li class="list-group-item"><a href="${indexpath}/manage/queAnimatedPage.action">查寻所有动漫</a></li>
 	  <li class="list-group-item"><a href="javascript:createIndex()">重新生成首页</a></li>
+	  <li class="list-group-item"><a href="javascript:createBaiduXml()">生成百度推广文件</a></li>
 	</ul>
 </div>
 </body>
@@ -29,6 +30,16 @@
 		$.ajax({
 	        type : "POST",
 	        url : "${indexpath}/manage/createIndex.action",
+	        success : function(result) {
+	            alert(result);
+	        }
+	    });
+	}
+	
+	function createBaiduXml(){
+		$.ajax({
+	        type : "POST",
+	        url : "${indexpath}/manage/createBaiduXml.action",
 	        success : function(result) {
 	            alert(result);
 	        }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="${indexpath}/css/boots/bootstrap.min.css">
 <script src="${indexpath}/js/jquery.min.js"></script>
 <title>Insert title here</title>
