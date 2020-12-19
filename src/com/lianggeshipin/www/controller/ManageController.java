@@ -1,5 +1,6 @@
 package com.lianggeshipin.www.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -14,10 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lianggeshipin.www.dao.IWord1000Dao;
 import com.lianggeshipin.www.model.Animated;
 import com.lianggeshipin.www.model.Plot;
+import com.lianggeshipin.www.model.Word_1000;
 import com.lianggeshipin.www.service.IAnimatedService;
 import com.lianggeshipin.www.service.IPlotService;
+import com.lianggeshipin.www.service.IWord_1000Service;
 import com.lianggeshipin.www.util.FreeMarkerUtil;
 import com.lianggeshipin.www.util.InitUtil;
 
@@ -29,7 +33,8 @@ public class ManageController {
 	private IAnimatedService animatedService;
 	@Resource
 	private IPlotService plotService;
-	
+	@Resource
+	private IWord_1000Service word_1000Service;
 	
 	
 	@RequestMapping("/index.action")
@@ -286,6 +291,7 @@ public class ManageController {
 	@RequestMapping("/test.action")
 	@ResponseBody
 	public String test(){
+		
 		return "测试连通";
 	}
 	

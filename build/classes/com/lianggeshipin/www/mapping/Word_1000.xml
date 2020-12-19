@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lianggeshipin.www.dao.IWord1000Dao">
+    
+    <insert id="add" parameterType="com.lianggeshipin.www.model.Word_1000" keyProperty="id" useGeneratedKeys="true">
+    	insert word_1000(id,word,en_sentence_1,ch_sentence_1,en_sentence_2,ch_sentence_2) 
+		VALUE(#{id},#{word},#{en_sentence_1},#{ch_sentence_1},#{en_sentence_2},#{ch_sentence_2})
+    </insert>
+    
+    <select id="getPage" parameterType="int" resultType="com.lianggeshipin.www.model.Word_1000">
+    	select * from word_1000 limit ${(20*(page-1))},20
+    </select>
+    
+</mapper>

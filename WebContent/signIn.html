@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="http://localhost:8080/lianggeshipin/js/jquery.min.js"></script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>用户名：</td>
+			<td><input id="username" type="text"/></td>
+		</tr>
+		<tr>
+			<td>密码：</td>
+			<td><input id="password" type="password" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><button onclick="signIn()">提交</button></td>
+		</tr>
+	</table>
+</body>
+</html>
+<script>
+function signIn(){
+	$.ajax({
+		type: "POST",
+		url: "http://localhost:8080/lianggeshipin/front/signIn.action",
+		data: {"username":$("#username").val(),"password":$("#password").val()},
+		dataType:"json",
+		success: function(msg){
+		 	if(msg.success==1){
+		 		window.location.href="http://localhost:8080/lianggeshipin/manage/index.action";
+		 	}else{
+				alert("登录错误");
+			}
+		}
+	});
+}
+
+</script>
