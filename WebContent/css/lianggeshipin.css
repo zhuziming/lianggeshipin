@@ -1,4 +1,3 @@
-html { font-size: calc(1em + 1vw); } 
 .l-plot-sort{word-wrap:keep-all;white-space:nowrap;overflow: hidden;} 
 .index-bgi{background-image: url('http://localhost:8080/lianggeshipin/image/index_back.jpg')}
 .nav-bgi{background-image: url('http://localhost:8080/lianggeshipin/image/index_back_2.jpg')}

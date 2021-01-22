@@ -64,19 +64,21 @@ public class FrontController {
 			}
 			// 一共有822条数据，每一页20条，最多有42页。
 			if(num<1){ num=1; } 
-			if(num>42){ num=42; }
+			if(num>42){ 
+				return "{\"success\":\"2\"}";
+			}
 			List<Word_1000> wordList = word_1000Service.getPage(num);
 			StringBuffer sb = new StringBuffer();
 			for (Word_1000 word_1000 : wordList) {
 				sb.append("<div class='col-xl-6 col-lg-6 col-md-6 col-sm-12'>");
-				sb.append("<img  width=\"100%\" src='"+ PropertiesUtil.getValue("system.properties", "indexpath") +"/word1000Img/"+ word_1000.getWord() +"."+ word_1000.getImg_format() +"' class='img-fluid rounded float-right'>");
+				sb.append("<img src='"+ PropertiesUtil.getValue("system.properties", "indexpath") +"/word1000Img/"+ word_1000.getWord() +"."+ word_1000.getImg_format() +"' class='img-fluid rounded float-right'>");
 				sb.append("</div>");
 				sb.append("<div class='col-xl-6 col-lg-6 col-md-6 col-sm-12'>");
 				sb.append("<table class='table'>");
 				sb.append("<tbody>");
 				sb.append("<tr>");
 				sb.append("<td>");
-				sb.append("<button type='button' class='btn btn-dark'>"+ word_1000.getWord() +"</button>");
+				sb.append("<h1>"+ word_1000.getWord() +"</h1>");
 				sb.append(word_1000.getDescription());
 				sb.append("</td>");
 				sb.append("</tr>");
@@ -124,6 +126,7 @@ public class FrontController {
 		}
 	}
 	
+	// 只有管理员能用的登录
 	@ResponseBody
 	@RequestMapping("/signIn.action")
 	public String signIn(HttpServletRequest request){
@@ -135,6 +138,13 @@ public class FrontController {
 		}else{
 			return "{\"success\":\"2\"}";
 		}
+	}
+	
+	// 微信登录回调地址
+	@RequestMapping("/weixinBack.action")
+	public String weixinBack(){
+		
+		return "";
 	}
 	
 }

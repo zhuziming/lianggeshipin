@@ -24,12 +24,12 @@ public class URLFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		Object username = ((HttpServletRequest)request).getSession().getAttribute("username");
+	//	Object username = ((HttpServletRequest)request).getSession().getAttribute("username");
 		// 如果用户没有登录，收跳到登录页
-		if(username==null || !"18237126723".equals(username.toString())){
-			((HttpServletResponse)response).sendRedirect("http://www.lianggeshipin.com/signIn.html");
-			return;
-		}
+	//	if(username==null || !"18237126723".equals(username.toString())){
+	//		((HttpServletResponse)response).sendRedirect("http://www.lianggeshipin.com/signIn.html");
+	//		return;
+	//	}
 		chain.doFilter(request, response);
 	}
 

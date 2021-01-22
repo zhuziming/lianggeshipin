@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="${csspath}/boots/bootstrap.min.css">
 <link rel="stylesheet" href="${csspath}/video-js.css">
 <link rel="stylesheet" href="${csspath}/lianggeshipin.css">
@@ -91,14 +92,14 @@
 		<#list wordList as word_>
 		
 	    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-	      	<img width="100%" src="${indexpath}/word1000Img/${(word_.word)!""}.${word_.img_format}" class="img-fluid rounded float-right">
+	      	<img  src="${indexpath}/word1000Img/${(word_.word)!""}.${word_.img_format}" class="img-fluid rounded float-right">
 	    </div>
 	    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 	      	<table class="table">
 			    <tbody>
 			      <tr>
 			        <td>
-			        	<button type="button" class="btn btn-dark">${(word_.word)!""}</button>
+			        	<h1>${(word_.word)!""}</h1>
 			        	${(word_.description)!""}
 			        </td>
 			      </tr>
