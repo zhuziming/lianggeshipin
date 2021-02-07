@@ -39,8 +39,6 @@
 		    <li class="page-item <#if pageNum == 5>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=5">5</a></li>
 		    <li class="page-item <#if pageNum == 6>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=6">6</a></li>
 		    <li class="page-item <#if pageNum == 7>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=7">7</a></li>
-		    <li class="page-item <#if pageNum == 8>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=8">8</a></li>
-		    <li class="page-item <#if pageNum == 9>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=9">9</a></li>
 		    <li class="page-item">
 		      <a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=42">末页</a>
 		    </li>
@@ -59,8 +57,6 @@
 		    <li class="page-item <#if pageNum == 38>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=38">38</a></li>
 		    <li class="page-item <#if pageNum == 39>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=39">39</a></li>
 		    <li class="page-item <#if pageNum == 40>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=40">40</a></li>
-		    <li class="page-item <#if pageNum == 41>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=41">41</a></li>
-		    <li class="page-item <#if pageNum == 42>active</#if>"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=42">42</a></li>
 		    <li class="page-item">
 		      <a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=42">末页</a>
 		    </li>
@@ -72,7 +68,6 @@
 		    <li class="page-item">
 		      <a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=1">首页</a>
 		    </li>
-		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum-4}">${pageNum-4}</a></li>
 		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum-3}">${pageNum-3}</a></li>
 		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum-2}">${pageNum-2}</a></li>
 		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum-1}">${pageNum-1}</a></li>
@@ -80,7 +75,6 @@
 		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum+1}">${pageNum+1}</a></li>
 		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum+2}">${pageNum+2}</a></li>
 		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum+3}">${pageNum+3}</a></li>
-		    <li class="page-item"><a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=${pageNum+4}">${pageNum+4}</a></li>
 		    <li class="page-item">
 		      <a class="page-link" href="${indexpath}/front/word1000Page.action?pageNum=42">末页</a>
 		    </li>

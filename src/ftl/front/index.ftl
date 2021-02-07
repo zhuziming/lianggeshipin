@@ -20,10 +20,10 @@
 	  <h1 class="display-4">两个视频</h1>
 	  <p class="lead">本网站所有的页面都是两个视频，左边是中文，右边是英文。在学习英语的时候如果只看英文动漫，并不理解其中的意思。
 	  	<br>如果能先看一遍中文的动漫，再看英文时就知道它在说什么，更好的理解语言。
-	  	<br>下载链接  <p class="lead" style="word-break:break-all;">https://pan.baidu.com/s/1cHNs4gQb2zw9IXoJQMjHXw  提取码：xdhb</p> 
 	  </p>
 	  <hr class="my-4">
 	  <a class="btn btn-primary btn-lg" target="_blank" href="${indexpath}/front/word1000Page.action?pageNum=1" role="button">英语4级，1000单词图片记忆</a>
+	  <a class="btn btn-primary btn-lg" target="_blank" href="${indexpath}/front/word4500Page.action?pageNum=1" role="button">英语4级，4500单词图片记忆</a>
 	</div>
 	
 	<nav aria-label="breadcrumb">

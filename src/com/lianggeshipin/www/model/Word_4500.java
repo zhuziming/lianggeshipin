@@ -1,6 +1,6 @@
 package com.lianggeshipin.www.model;
 
-public class Word_1000 {
+public class Word_4500 {
 	private int id;
 	private String word;
 	private String description;

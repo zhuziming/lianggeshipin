@@ -8,7 +8,8 @@ public class Test {
 
 	public static void main(String[] args) {
 		List<String> files = new ArrayList<String>();
-        File file = new File("E:\\英语资料\\ps后的成品图");
+		// E:\英语资料\4500完成\4500成品
+        File file = new File("E:\\英语资料\\4500完成\\4500成品");
         File[] tempList = file.listFiles();
 
         for (int i = 0; i < tempList.length; i++) {
