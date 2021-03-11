@@ -16,7 +16,7 @@ public class Plot {
 	public String title; // 网页的标题
 	public String meta;  // 网页的关键字
 	public String intro; // 动漫信息
-	
+	public String down;  // 下载地址
 	
 	public int getId() {
 		return id;
@@ -71,6 +71,12 @@ public class Plot {
 	}
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+	public String getDown() {
+		return down;
+	}
+	public void setDown(String down) {
+		this.down = down;
 	}
 	
 	

@@ -19,13 +19,12 @@ ${(plot.meta)!""}
 	
 	<div class="jumbotron play-bgi">
 		<h1 class="display-4">${(plot.plotName)!""}</h1>
-		<p class="lead">${(plot.plotName)!""}</p>
 		<hr class="my-4">
 		<a class="btn btn-primary btn-lg" href="${indexpath}" role="button">回首页</a>
 	</div>
 	
 	<div class="alert alert-success" role="alert">
-	  	${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotName)!""} 中文 英文播放
+	  	${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotName)!""} 中文 英文播放   ${(plot.down)!""}
 	</div>
 	<div class="row">
 		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
@@ -33,7 +32,7 @@ ${(plot.meta)!""}
 			  	中文 ${(plot.plotName)!""}
 			</div>
 			<video  id="my-video1" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
-				<source src="${webMp4Path}/${animated.id}/ch/${plot.videoUrl}" type="video/mp4">
+				<source src="${webMp4Path}${plot.videoUrl}" type="video/mp4">
 		  	</video>
 		</div>
 		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
@@ -41,10 +40,11 @@ ${(plot.meta)!""}
 			  	英文 ${(plot.plotName)!""}
 			</div>
 			<video  id="my-video2" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
-				<source src="${webMp4Path}/${animated.id}/en/${plot.videoUrl}" type="video/mp4">
+				<source src="${webMp4Path}${plot.videoUrl}" type="video/mp4">
 		  	</video>
 		</div>
 	</div>
+	
 	
 	<div class="alert alert-primary" role="alert">
 	  	选集
@@ -64,7 +64,7 @@ ${(plot.meta)!""}
 		</#list>
 	</div>
 	<div class="alert alert-primary" role="alert">
-	  	故事情节
+	  	台词字幕
 	</div>
 	<div class="jumbotron">
 		  <h1 class="display-4">${(plot.plotName)!""}</h1>
@@ -72,12 +72,11 @@ ${(plot.meta)!""}
 	</div>
 	
 </div>
-<footer class="blog-footer">
-	  <p><a class="alert alert-light" target="_blank" href="http://www.miitbeian.gov.cn">豫ICP备2020033396</a></p>
-</footer>
 </body>
 </html>
 <script type="text/javascript">
+	$('#my-video1').bind('contextmenu',function() { return false; });
+	$('#my-video2').bind('contextmenu',function() { return false; });
 	var myPlayer = videojs('my-video1',{ autoplay: true,fluid: true }, function () { });
 	var myPlayer = videojs('my-video2',{ autoplay: false,fluid: true }, function () { });
 </script>

@@ -20,6 +20,36 @@
 	<input type="hidden" id="plotID" value="${plot.id}">
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
+	    <span class="input-group-text">视频名字</span>
+	  </div>
+	  <textarea id="plotName_" class="form-control">${(plot.plotName)!""}</textarea>
+	</div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">第几集</span>
+	  </div>
+	  <textarea id="whichEpisode_" class="form-control">${(plot.whichEpisode)!""}</textarea>
+	</div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">视频地址</span>
+	  </div>
+	  <textarea id="videoUrl_" class="form-control">${(plot.videoUrl)!""}</textarea>
+	</div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">图片地址</span>
+	  </div>
+	  <textarea id="imgUrl_" class="form-control">${(plot.imgUrl)!""}</textarea>
+	</div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">down</span>
+	  </div>
+	  <textarea id="down_" class="form-control">${(plot.down)!""}</textarea>
+	</div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
 	    <span class="input-group-text">title</span>
 	  </div>
 	  <textarea id="title_" class="form-control">${(plot.title)!""}</textarea>
@@ -44,6 +74,13 @@
 <script>
 
 function editPlot(){
+	
+	var plotName_ = $("#plotName_").val();
+	var whichEpisode_ = $("#whichEpisode_").val();
+	var videoUrl_ = $("#videoUrl_").val();
+	var imgUrl_  = $("#imgUrl_").val();
+	
+	var down_  =  $("#down_").val();
 	var title_ =  $("#title_").val();
 	var meta_  =  $("#meta_").val();
 	var intro_ =  $("#intro_").val();
@@ -52,7 +89,8 @@ function editPlot(){
 	$.ajax({
         type : "POST",
         url : "${indexpath}/manage/editPlot.action",
-        data : {"plotID":plotID,"title":title_,"meta":meta_,"intro":intro_},
+        data : {"plotID":plotID,"title":title_,"meta":meta_,"intro":intro_,"down":down_,
+        "plotName":plotName_,"whichEpisode":whichEpisode_,"videoUrl":videoUrl_,"imgUrl":imgUrl_},
         success : function(result) {
             alert(result);
         }

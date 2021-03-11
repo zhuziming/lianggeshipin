@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.lianggeshipin.www.model.Animated;
+import com.lianggeshipin.www.model.Plot;
 import com.lianggeshipin.www.model.Word_1000;
 import com.lianggeshipin.www.model.Word_4500;
+import com.lianggeshipin.www.service.IPlotService;
 import com.lianggeshipin.www.service.IWord_1000Service;
 import com.lianggeshipin.www.service.IWord_4500Service;
 import com.lianggeshipin.www.util.InitUtil;
@@ -28,6 +31,9 @@ public class FrontController {
 	
 	@Resource
 	private IWord_4500Service word_4500Service;
+	
+	@Resource
+	private IPlotService plotService;
 	
 	/**
 	 * @description 得到页数，然后返回页面
@@ -251,6 +257,43 @@ public class FrontController {
 			return "{\"success\":\"2\"}";
 		}
 	}
+	
+	@ResponseBody
+	@RequestMapping("/getPlot.action")
+	public String getPlot(HttpServletRequest request){
+		try{
+			Integer animatedID = Integer.valueOf(request.getParameter("animatedID"));
+			Integer pageNum = Integer.valueOf(request.getParameter("pageNum"));
+			List<Plot> pList = plotService.queListByAnimatedIDLimit(animatedID,pageNum);
+			if(pList.size()>0){
+				StringBuffer sb = new StringBuffer();
+				String indexpath = PropertiesUtil.getValue("system.properties", "indexpath");
+				String animatedImgPath = PropertiesUtil.getValue("system.properties", "animatedImgPath");
+				for(Plot plot:pList){
+					sb.append("<div class=\"col-xl-3 col-lg-4 col-md-6 col-sm-12\">");
+					sb.append("<a target=\"_blank\" href=\""+indexpath+"/"+animatedID+"/"+plot.whichEpisode+".html\">");
+					sb.append("<img src=\""+animatedImgPath+"/"+animatedID+"/"+plot.imgUrl+"\" class=\"img-fluid\" alt=\""+plot.plotName+"\">");
+					sb.append("<p class=\"l-plot-sort\">"+plot.plotName+"</p>");
+					sb.append("</a>");
+					sb.append("</div>");
+				}
+				JSONObject jo = new JSONObject();
+				jo.put("success", "1");
+				jo.put("ele", sb.toString());
+				return jo.toJSONString();
+			}else{
+				JSONObject jo = new JSONObject();
+				jo.put("success", "2");
+				return jo.toJSONString();
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+			JSONObject jo = new JSONObject();
+			jo.put("success", "3");
+			return jo.toJSONString();
+		}
+	}
+	
 	
 	// 微信登录回调地址
 	@RequestMapping("/weixinBack.action")

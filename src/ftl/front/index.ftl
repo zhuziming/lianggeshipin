@@ -43,25 +43,15 @@
 		<#assign plotlist=mapPlotList[animated.animatedName]/>
 		<div class="row">
 			<#list plotlist as plot>
-				<#if plot_index gt 7>  <#comment> 只显示8条数据，超出就隐藏 </#comment>
-					<div name="${animated.id}" class="col-xl-3 col-lg-4 col-md-6 col-sm-12 d-none">
-				      	<a target="_blank" href="${indexpath}/${animated.id}/${plot.whichEpisode}.html">
-				      		<img src="${animatedImgPath}/${animated.id}/${plot.imgUrl}" class="img-fluid" alt="${plot.plotName}">
-				      		<p class="l-plot-sort">${(plot.plotName)!""}</p>
-				      	</a>
-				    </div>
-				<#else>
-					<div name="${animated.id}" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-				      	<a target="_blank" href="${indexpath}/${animated.id}/${plot.whichEpisode}.html">
-				      		<img src="${animatedImgPath}/${animated.id}/${plot.imgUrl}" class="img-fluid" alt="${plot.plotName}">
-				      		<p class="l-plot-sort">${(plot.plotName)!""}</p>
-				      	</a>
-				    </div>
-				</#if>
-		    
+				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+			      	<a target="_blank" href="${indexpath}/${animated.id}/${plot.whichEpisode}.html">
+			      		<img src="${animatedImgPath}/${animated.id}/${plot.imgUrl}" class="img-fluid" alt="${plot.plotName}">
+			      		<p class="l-plot-sort">${(plot.plotName)!""}</p>
+			      	</a>
+			    </div>
 		    </#list>
-			<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-		      	<a href="javascript:delClass('${animated.id}');">
+			<div id="${animated.id}" pageNum="0" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+		      	<a href="javascript:showMore('${animated.id}');">
 		      		<img src="${imgpath}/showMore.jpg" class="img-fluid">
 		      	</a>
 		    </div>
@@ -89,7 +79,22 @@
 </body>
 </html>
 <script>
-	function delClass(c_name){
-		$("div[name='"+c_name+"']").removeClass("d-none");
+	function showMore(c_name){
+		var pageNum = $("#"+c_name).attr("pageNum");
+		$.ajax({
+		   type: "POST",
+		   url: "${indexpath}/front/getPlot.action",
+		   data: {"animatedID":c_name,"pageNum":parseInt(pageNum)+1},
+		   dataType:"json",
+		   success: function(msg){
+			   	if(msg.success==1){
+			   		$("#"+c_name).before(msg.ele);
+			   		pageNum = parseInt(pageNum)+1
+			 		$("#"+c_name).attr("pageNum",pageNum);
+			   	}else if(msg.success==2){
+		   			$("#"+c_name).addClass("d-none");
+		   		}
+		   }
+		});
 	}
 </script>

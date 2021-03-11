@@ -4,8 +4,8 @@
 <mapper namespace="com.lianggeshipin.www.dao.IPlotDao">
     
     <insert id="add" parameterType="com.lianggeshipin.www.model.Plot" keyProperty="id" useGeneratedKeys="true">
-    	insert plot(id,animated_id,plot_name,which_episode,video_url,img_url,title,meta,intro) 
-    	VALUE(#{id},#{animatedID},#{plotName},#{whichEpisode},#{videoUrl},#{imgUrl},#{title},#{meta},#{intro})
+    	insert plot(id,animated_id,plot_name,which_episode,video_url,img_url,title,meta,intro,down) 
+    	VALUE(#{id},#{animatedID},#{plotName},#{whichEpisode},#{videoUrl},#{imgUrl},#{title},#{meta},#{intro},#{down})
     </insert>
     
     <delete id="del" parameterType="int">
@@ -15,22 +15,29 @@
     <update id="up" parameterType="com.lianggeshipin.www.model.Plot">
     	UPDATE plot set id=#{id},animated_id=#{animatedID},plot_name=#{plotName},
     		which_episode=#{whichEpisode},video_url=#{videoUrl},img_url=#{imgUrl},
-    		title=#{title},meta=#{meta},intro=#{intro}  
+    		title=#{title},meta=#{meta},intro=#{intro},down=#{down}  
     	where id=#{id}
     </update>
     
     <select id="queOne" parameterType="int" resultType="com.lianggeshipin.www.model.Plot">
     	SELECT id,animated_id AS animatedID,plot_name AS plotName,which_episode AS whichEpisode,
-    	video_url AS videoUrl,img_url AS imgUrl,title,meta,intro 
+    	video_url AS videoUrl,img_url AS imgUrl,title,meta,intro,down 
     	from plot 
     	WHERE id=#{id};
     </select>
     
     <select id="queListByAnimatedID" parameterType="int" resultType="com.lianggeshipin.www.model.Plot">
     	SELECT id,animated_id AS animatedID,plot_name AS plotName,which_episode AS whichEpisode,
-    	video_url AS videoUrl,img_url AS imgUrl,title,meta,intro  
+    	video_url AS videoUrl,img_url AS imgUrl,title,meta,intro,down  
     	from plot
     	WHERE animated_id=#{animatedID};
+    </select>
+    
+    <select id="queListByAnimatedIDLimit" parameterType="map" resultType="com.lianggeshipin.www.model.Plot">
+    	SELECT id,animated_id AS animatedID,plot_name AS plotName,which_episode AS whichEpisode,
+		video_url AS videoUrl,img_url AS imgUrl,title,meta,intro,down  
+		from plot
+		WHERE animated_id=#{animatedID} LIMIT ${pageNum*8},8;
     </select>
     
 </mapper>

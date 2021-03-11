@@ -1,6 +1,8 @@
 package com.lianggeshipin.www.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -19,32 +21,35 @@ public class PlotServiceImpl implements IPlotService {
 
 	@Override
 	public int add(Plot p) {
-		// TODO Auto-generated method stub
 		return plotDao.add(p);
 	}
 
 	@Override
 	public int del(Integer id) {
-		// TODO Auto-generated method stub
 		return plotDao.del(id);
 	}
 
 	@Override
 	public int up(Plot p) {
-		// TODO Auto-generated method stub
 		return plotDao.up(p);
 	}
 
 	@Override
 	public Plot queOne(Integer id) {
-		// TODO Auto-generated method stub
 		return plotDao.queOne(id);
 	}
 
 	@Override
 	public List<Plot> queListByAnimatedID(Integer animatedID) {
-		// TODO Auto-generated method stub
 		return plotDao.queListByAnimatedID(animatedID);
+	}
+
+	@Override
+	public List<Plot> queListByAnimatedIDLimit(Integer animatedID,Integer pageNum) {
+		Map<String,Integer> map = new HashMap<String, Integer>();
+		map.put("animatedID", animatedID);
+		map.put("pageNum", pageNum);
+		return plotDao.queListByAnimatedIDLimit(map);
 	}
 
 }

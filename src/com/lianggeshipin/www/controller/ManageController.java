@@ -141,9 +141,6 @@ public class ManageController {
 				p.setVideoUrl(videoUrl);
 				p.setImgUrl(imgUrl);
 				plotService.add(p);
-				System.out.println("animatedID : " + animatedID);
-				System.out.println("plotName : " + plotName);
-				System.out.println("plotName : " + plotName);
 			}
 		}
 		
@@ -196,10 +193,20 @@ public class ManageController {
 			String title = request.getParameter("title");
 			String meta = request.getParameter("meta");
 			String intro = request.getParameter("intro");
+			String down  = request.getParameter("down");
+			String plotName = request.getParameter("plotName");
+			String whichEpisode = request.getParameter("whichEpisode");
+			String videoUrl = request.getParameter("videoUrl");
+			String imgUrl = request.getParameter("imgUrl");
 			Plot p = plotService.queOne(pid);
 			p.setTitle(title);
 			p.setMeta(meta);
-			p.setIntro(intro);
+			p.setIntro(intro.replaceAll("\n", "<br/>"));  // 把换行换成html <br/>
+			p.setDown(down); 
+			p.setPlotName(plotName);
+			p.setWhichEpisode(Integer.valueOf(whichEpisode));
+			p.setVideoUrl(videoUrl);
+			p.setImgUrl(imgUrl);
 			plotService.up(p);
 			return "更新成功";
 		}catch(Exception e){
@@ -220,7 +227,7 @@ public class ManageController {
 		List<Animated> aniList = animatedService.queList();
 		Map<String,List<Plot>> mapPlotList = new HashMap<String, List<Plot>>();
 		for(Animated ani:aniList){
-			List<Plot> pList = plotService.queListByAnimatedID(ani.getId());
+			List<Plot> pList = plotService.queListByAnimatedIDLimit(ani.getId(),0);
 			mapPlotList.put(ani.getAnimatedName(), pList);
 		}
 		FreeMarkerUtil.createIndex(aniList, mapPlotList);
