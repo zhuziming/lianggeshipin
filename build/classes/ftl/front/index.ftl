@@ -18,22 +18,18 @@
 
 <div class="container-fluid">
 
-	<nav class="navbar navbar-expand-md navbar-dark  fixed-top">
-	  	<a id="weixinFlag" class="navbar-brand" href="javascript:wx_login()">微信登录</a>
-	  	<form class="form-inline my-2 my-lg-0">
-	      	<input class="form-control mr-sm-2" type="text" placeholder="输入影片" aria-label="Search">
-	      	<button class="btn btn-light my-2 my-sm-0" type="submit">搜索</button>
-	    </form>
-	</nav>
 
 	<div class="jumbotron index-bgi">
-	  <h1 class="display-4">两个视频</h1>
+	  <h1 class="display-4 inline">两个视频</h1>
 	  <p class="lead">本网站所有的页面都是两个视频，左边是中文，右边是英文。在学习英语的时候如果只看英文动漫，并不理解其中的意思。
 	  	<br>如果能先看一遍中文的动漫，再看英文时就知道它在说什么，更好的理解语言。
 	  </p>
 	  <hr class="my-4">
-	  <a class="btn btn-primary btn-lg" target="_blank" href="${indexpath}/front/word1000Page.action?pageNum=1" role="button">英语4级，1000单词图片记忆</a>
-	  <a class="btn btn-primary btn-lg" target="_blank" href="${indexpath}/front/word4500Page.action?pageNum=1" role="button">英语4级，4500单词图片记忆</a>
+	  <form class="form-inline my-2 my-lg-0 mb-2">
+	  	<a id="weixinFlag" class="btn btn-primary btn-lg mb-2 mr-sm-2" href="javascript:wx_login()">微信登录</a>
+	  	<a class="btn btn-primary btn-lg mb-2 mr-sm-2" target="_blank" href="${indexpath}/front/word1000Page.action?pageNum=1" role="button">英语4级，1000单词图片记忆</a>
+	  	<a class="btn btn-primary btn-lg mb-2 mr-sm-2" target="_blank" href="${indexpath}/front/word4500Page.action?pageNum=1" role="button">英语4级，4500单词图片记忆</a>
+      </form>
 	</div>
 	
 	<nav aria-label="breadcrumb">
