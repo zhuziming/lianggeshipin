@@ -1,19 +1,20 @@
 package com.lianggeshipin.www.controller;
 
 
+
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSONObject;
-import com.lianggeshipin.www.model.Animated;
 import com.lianggeshipin.www.model.Plot;
+import com.lianggeshipin.www.model.User;
 import com.lianggeshipin.www.model.Word_1000;
 import com.lianggeshipin.www.model.Word_4500;
 import com.lianggeshipin.www.service.IPlotService;
@@ -34,6 +35,8 @@ public class FrontController {
 	
 	@Resource
 	private IPlotService plotService;
+	
+
 	
 	/**
 	 * @description 得到页数，然后返回页面
@@ -294,15 +297,19 @@ public class FrontController {
 		}
 	}
 	
-	
-	// 微信登录回调地址
-	@RequestMapping("/weixinBack.action")
-	public String weixinBack(){
+	@ResponseBody
+	@RequestMapping("/getUserName.action")
+	public String getUserName(HttpSession session){
+		Object obj = session.getAttribute("user");
+		JSONObject jo = new JSONObject();
 		
-		return "";
+		if(obj==null){
+			jo.put("success", "2");
+		}else{
+			jo.put("success", "1");
+			jo.put("ele", ((User)obj).getNickname());
+		}
+		return jo.toJSONString();
 	}
-	
 
-	
-	
 }

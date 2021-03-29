@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lianggeshipin.www.dao.IUserDao">
+    <insert id="add" parameterType="com.lianggeshipin.www.model.User" keyProperty="id" useGeneratedKeys="true">
+    	INSERT user(id,account,nickname,password,phone,picture,sex,only_id,app_id) 
+		VALUES(#{id},#{account},#{nickname},#{password},#{phone},
+		#{picture},#{sex},#{onlyID},#{appID});
+    </insert>
+    
+    <delete id="del" parameterType="int">
+    	DELETE FROM user where id=#{id}
+    </delete>
+    
+    <update id="up" parameterType="com.lianggeshipin.www.model.User">
+    	UPDATE user set 
+    	id=#{id},account=#{account},nickname=#{nickname},password=#{password},
+    	phone=#{phone},picture=#{picture},sex=#{sex},only_id=#{onlyID},app_id=#{appID} 
+    	where id=#{id}
+    </update>
+    
+    <select id="getOne" parameterType="int" resultType="com.lianggeshipin.www.model.User">
+    	select id,account,nickname,password,phone,picture,sex,
+    	only_id AS onlyID,app_id AS appID 
+    	from user;
+    </select>
+    
+    <select id="getOneByAppID" parameterType="int" resultType="com.lianggeshipin.www.model.User">
+    	select id,account,nickname,password,phone,picture,sex,
+    	only_id AS onlyID,app_id AS appID 
+    	from user WHERE app_id = #{appID};
+    </select>
+    
+</mapper>

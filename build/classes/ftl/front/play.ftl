@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotName)!""} 中文 英文播放</title>
+<title>${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotName)!""} 中文 英文播放 台词字幕</title>
 ${(plot.meta)!""}
 <link rel="stylesheet" href="${csspath}/lianggeshipin.css">
 <link rel="stylesheet" href="${csspath}/boots/bootstrap.min.css">

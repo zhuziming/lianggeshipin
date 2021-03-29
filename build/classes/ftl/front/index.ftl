@@ -9,6 +9,7 @@
 <link rel="icon" href="data:;base64,=">
 <script src="${indexpath}/js/jquery.min.js"></script>
 <script src="${indexpath}/js/baidu.js"></script>
+<script src="${indexpath}/js/lianggeshipin.js"></script>
 <title>两个视频</title>
 <meta name="keywords" content="两个视频,英文视频中文播放,外国视频中文播放">
 <meta name="description" content="网站名称“两个视频”，所有的视频都会提供中文与英文两个版本，主要为学习英语的人准备，通过中英文对照观看可以更好的理解语言，祝每一个学子都能获得好成绩。">
@@ -16,6 +17,15 @@
 <body>
 
 <div class="container-fluid">
+
+	<nav class="navbar navbar-expand-md navbar-dark  fixed-top">
+	  	<a id="weixinFlag" class="navbar-brand" href="javascript:wx_login()">微信登录</a>
+	  	<form class="form-inline my-2 my-lg-0">
+	      	<input class="form-control mr-sm-2" type="text" placeholder="输入影片" aria-label="Search">
+	      	<button class="btn btn-light my-2 my-sm-0" type="submit">搜索</button>
+	    </form>
+	</nav>
+
 	<div class="jumbotron index-bgi">
 	  <h1 class="display-4">两个视频</h1>
 	  <p class="lead">本网站所有的页面都是两个视频，左边是中文，右边是英文。在学习英语的时候如果只看英文动漫，并不理解其中的意思。
@@ -97,4 +107,20 @@
 		   }
 		});
 	}
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function (){
+		$.ajax({
+		   type: "POST",
+		   url: "${indexpath}/front/getUserName.action",
+		   dataType:"json",
+		   success: function(msg){
+			   	if(msg.success==1){
+			   		$("#weixinFlag").attr("href","#");
+			   		$("#weixinFlag").text(msg.ele);
+			   	}
+		   }
+		});
+	});
 </script>
