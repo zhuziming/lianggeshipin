@@ -20,9 +20,15 @@
 	<input type="hidden" id="plotID" value="${plot.id}">
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
-	    <span class="input-group-text">视频名字</span>
+	    <span class="input-group-text">中文视频名字</span>
 	  </div>
-	  <textarea id="plotName_" class="form-control">${(plot.plotName)!""}</textarea>
+	  <textarea id="plotNameCh_" class="form-control">${(plot.plotNameCh)!""}</textarea>
+	</div>
+	<div class="input-group mb-3">
+	  <div class="input-group-prepend">
+	    <span class="input-group-text">英文视频名字</span>
+	  </div>
+	  <textarea id="plotNameEn_" class="form-control">${(plot.plotNameEn)!""}</textarea>
 	</div>
 	<div class="input-group mb-3">
 	  <div class="input-group-prepend">
@@ -81,7 +87,8 @@
 
 function editPlot(){
 	
-	var plotName_ = $("#plotName_").val();
+	var plotNameCh_ = $("#plotNameCh_").val();
+	var plotNameEn_ = $("#plotNameEn_").val();
 	var whichEpisode_ = $("#whichEpisode_").val();
 	var videoUrlCh_ = $("#videoUrlCh_").val();
 	var videoUrlEn_ = $("#videoUrlEn_").val();
@@ -97,7 +104,7 @@ function editPlot(){
         type : "POST",
         url : "${indexpath}/manage/editPlot.action",
         data : {"plotID":plotID,"title":title_,"meta":meta_,"intro":intro_,"down":down_,
-        "plotName":plotName_,"whichEpisode":whichEpisode_,"videoUrlCh":videoUrlCh_,"videoUrlEn":videoUrlEn_,"imgUrl":imgUrl_},
+        "plotNameCh":plotNameCh_,"plotNameEn":plotNameEn_,"whichEpisode":whichEpisode_,"videoUrlCh":videoUrlCh_,"videoUrlEn":videoUrlEn_,"imgUrl":imgUrl_},
         success : function(result) {
             alert(result);
         }

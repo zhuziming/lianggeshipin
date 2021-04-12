@@ -275,8 +275,8 @@ public class FrontController {
 				for(Plot plot:pList){
 					sb.append("<div class=\"col-xl-3 col-lg-4 col-md-6 col-sm-12\">");
 					sb.append("<a target=\"_blank\" href=\""+indexpath+"/"+animatedID+"/"+plot.whichEpisode+".html\">");
-					sb.append("<img src=\""+animatedImgPath+"/"+animatedID+"/"+plot.imgUrl+"\" class=\"img-fluid\" alt=\""+plot.plotName+"\">");
-					sb.append("<p class=\"l-plot-sort\">"+plot.plotName+"</p>");
+					sb.append("<img src=\""+animatedImgPath+"/"+animatedID+"/"+plot.imgUrl+"\" class=\"img-fluid\" alt=\""+plot.plotNameCh+"\">");
+					sb.append("<p class=\"l-plot-sort\">"+plot.plotNameCh+"</p>");
 					sb.append("</a>");
 					sb.append("</div>");
 				}

@@ -21,7 +21,7 @@
 	  	<div class="row">
 	  		<#list plotList as plot>
 			    <div class="mb-3 col-xl-2 col-lg-2 col-md-3 col-sm-4 col-6">
-			      <a class="btn btn-outline-primary" href="${indexpath}/manage/editPlotPage.action?plotID=${plot.id}" role="button">${plot.plotName}</a>
+			      <a class="btn btn-outline-primary" href="${indexpath}/manage/editPlotPage.action?plotID=${plot.id}" role="button">${plot.plotNameCh}</a>
 			    </div>
 		    </#list>
 	  	</div>

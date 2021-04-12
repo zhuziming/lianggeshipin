@@ -43,25 +43,27 @@
 	</nav>
 	
 	<#list animatedList as animated>
-		<div class="alert alert-secondary" role="alert">
-		 ${(animated.animatedName)!""}
-		</div>
 		<#assign plotlist=mapPlotList[animated.animatedName]/>
-		<div class="row">
-			<#list plotlist as plot>
-				<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-			      	<a target="_blank" href="${indexpath}/${animated.id}/${plot.whichEpisode}.html">
-			      		<img src="${animatedImgPath}/${animated.id}/${plot.imgUrl}" class="img-fluid" alt="${plot.plotName}">
-			      		<p class="l-plot-sort">${(plot.plotName)!""}</p>
+		<#if plotlist?? && (plotlist?size gt 0)>
+			<div class="alert alert-secondary" role="alert">
+				${(animated.animatedName)!""}
+			</div>
+			<div class="row">
+				<#list plotlist as plot>
+					<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+				      	<a target="_blank" href="${indexpath}/${animated.id}/${plot.whichEpisode}.html">
+				      		<img src="${animatedImgPath}/${animated.id}/${plot.imgUrl}" class="img-fluid" alt="${plot.plotNameCh}">
+				      		<p class="l-plot-sort">${(plot.plotNameCh)!""}</p>
+				      	</a>
+				    </div>
+			    </#list>
+				<div id="${animated.id}" pageNum="0" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+			      	<a href="javascript:showMore('${animated.id}');">
+			      		<img src="${imgpath}/showMore.jpg" class="img-fluid">
 			      	</a>
 			    </div>
-		    </#list>
-			<div id="${animated.id}" pageNum="0" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
-		      	<a href="javascript:showMore('${animated.id}');">
-		      		<img src="${imgpath}/showMore.jpg" class="img-fluid">
-		      	</a>
-		    </div>
-	  	</div>
+		  	</div>
+	  	</#if>
   	</#list>
 </div>
 	<div class="jumbotron">

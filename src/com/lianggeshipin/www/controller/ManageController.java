@@ -131,14 +131,16 @@ public class ManageController {
 		for (Integer integer : numList) {
 			String which    = request.getParameter("which"+integer);
 			if(which!=null && !which.isEmpty()){ // 可能会进入空数据
-				String plotName = request.getParameter("plotName"+integer);
+				String plotNameCh = request.getParameter("plotNameCh"+integer);
+				String plotNameEn = request.getParameter("plotNameEn"+integer);
 				String videoUrlCh = request.getParameter("videoUrlCh"+integer);
 				String videoUrlEn = request.getParameter("videoUrlEn"+integer);
 				String imgUrl   = request.getParameter("imgUrl"+integer);
 				Plot p = new Plot();
 				p.setAnimatedID(animatedID);
 				p.setWhichEpisode(Integer.valueOf(which));
-				p.setPlotName(plotName);
+				p.setPlotNameCh(plotNameCh);
+				p.setPlotNameEn(plotNameEn);
 				p.setVideoUrlCh(videoUrlCh);
 				p.setVideoUrlEn(videoUrlEn);
 				p.setImgUrl(imgUrl);
@@ -196,7 +198,8 @@ public class ManageController {
 			String meta = request.getParameter("meta");
 			String intro = request.getParameter("intro");
 			String down  = request.getParameter("down");
-			String plotName = request.getParameter("plotName");
+			String plotNameCh = request.getParameter("plotNameCh");
+			String plotNameEn = request.getParameter("plotNameEn");
 			String whichEpisode = request.getParameter("whichEpisode");
 			String videoUrlCh = request.getParameter("videoUrlCh");
 			String videoUrlEn = request.getParameter("videoUrlEn");
@@ -206,7 +209,8 @@ public class ManageController {
 			p.setMeta(meta);
 			p.setIntro(intro.replaceAll("\n", "<br/>"));  // 把换行换成html <br/>
 			p.setDown(down); 
-			p.setPlotName(plotName);
+			p.setPlotNameCh(plotNameCh);
+			p.setPlotNameEn(plotNameEn);
 			p.setWhichEpisode(Integer.valueOf(whichEpisode));
 			p.setVideoUrlCh(videoUrlCh);
 			p.setVideoUrlEn(videoUrlEn);

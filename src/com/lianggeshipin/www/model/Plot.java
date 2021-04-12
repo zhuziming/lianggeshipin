@@ -8,7 +8,8 @@ package com.lianggeshipin.www.model;
 public class Plot {
 	public int id;
 	public int animatedID; // 影片的id
-	public String plotName; // 剧情的名字
+	public String plotNameCh; // 剧情的中文名字
+	public String plotNameEn; // 剧情的英文名字
 	public int whichEpisode; // 哪一集
 	public String videoUrlCh; // 中文视频的地址
 	public String videoUrlEn; // 英文视频的地址
@@ -31,11 +32,17 @@ public class Plot {
 	public void setAnimatedID(int animatedID) {
 		this.animatedID = animatedID;
 	}
-	public String getPlotName() {
-		return plotName;
+	public String getPlotNameCh() {
+		return plotNameCh;
 	}
-	public void setPlotName(String plotName) {
-		this.plotName = plotName;
+	public void setPlotNameCh(String plotNameCh) {
+		this.plotNameCh = plotNameCh;
+	}
+	public String getPlotNameEn() {
+		return plotNameEn;
+	}
+	public void setPlotNameEn(String plotNameEn) {
+		this.plotNameEn = plotNameEn;
 	}
 	public int getWhichEpisode() {
 		return whichEpisode;

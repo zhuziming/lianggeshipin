@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotName)!""} 中文 英文播放 台词字幕</title>
+<title>${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotNameCh)!""} ${(plot.plotNameEn)!""} 中文 英文播放 台词字幕 ${(plot.down)!""}</title>
 ${(plot.meta)!""}
 <link rel="stylesheet" href="${csspath}/lianggeshipin.css">
 <link rel="stylesheet" href="${csspath}/boots/bootstrap.min.css">
@@ -18,18 +18,18 @@ ${(plot.meta)!""}
 <div class="container-fluid">
 	
 	<div class="jumbotron play-bgi">
-		<h1 class="display-4">${(plot.plotName)!""}</h1>
+		<h1 class="display-4">${(plot.plotNameCh)!""}</h1>
 		<hr class="my-4">
 		<a class="btn btn-primary btn-lg" href="${indexpath}" role="button">回首页</a>
 	</div>
 	
 	<div class="alert alert-success" role="alert">
-	  	${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotName)!""} 中文 英文播放   ${(plot.down)!""}
+	  	${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotNameCh)!""} ${(plot.plotNameEn)!""} 中文 英文播放   ${(plot.down)!""}
 	</div>
 	<div class="row">
 		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
 			<div class="alert alert-primary" role="alert">
-			  	中文 ${(plot.plotName)!""}
+			  	中文 ${(plot.plotNameCh)!""}
 			</div>
 			<video  id="my-video1" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
 				<source src="${(plot.videoUrlCh)!""}" type="video/mp4">
@@ -37,7 +37,7 @@ ${(plot.meta)!""}
 		</div>
 		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
 			<div class="alert alert-primary" role="alert">
-			  	英文 ${(plot.plotName)!""}
+			  	英文 ${(plot.plotNameEn)!""}
 			</div>
 			<video  id="my-video2" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
 				<source src="${(plot.videoUrlEn)!""}" type="video/mp4">
@@ -53,11 +53,11 @@ ${(plot.meta)!""}
 		<#list plotList as plot_>
 			<#if plot_.id == plot.id>
 				<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
-					<a class="btn btn-secondary" href="${indexpath}/${animated.id}/${plot_.whichEpisode}.html" role="button">${(plot_.plotName)!""}</a>
+					<a class="btn btn-secondary" href="${indexpath}/${animated.id}/${plot_.whichEpisode}.html" role="button">${(plot_.plotNameCh)!""}</a>
 				</div>
 			<#else>
 				<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
-					<a class="btn btn-light" href="${indexpath}/${animated.id}/${plot_.whichEpisode}.html" role="button">${(plot_.plotName)!""}</a>
+					<a class="btn btn-light" href="${indexpath}/${animated.id}/${plot_.whichEpisode}.html" role="button">${(plot_.plotNameCh)!""}</a>
 				</div>
 			</#if>
 			
@@ -67,7 +67,7 @@ ${(plot.meta)!""}
 	  	台词字幕
 	</div>
 	<div class="jumbotron">
-		  <h1 class="display-4">${(plot.plotName)!""}</h1>
+		  <h1 class="display-4">${(plot.plotNameCh)!""}</h1>
 		  <p class="lead">${(plot.intro)!""}</p>
 	</div>
 	
