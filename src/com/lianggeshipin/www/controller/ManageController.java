@@ -132,13 +132,15 @@ public class ManageController {
 			String which    = request.getParameter("which"+integer);
 			if(which!=null && !which.isEmpty()){ // 可能会进入空数据
 				String plotName = request.getParameter("plotName"+integer);
-				String videoUrl = request.getParameter("videoUrl"+integer);
+				String videoUrlCh = request.getParameter("videoUrlCh"+integer);
+				String videoUrlEn = request.getParameter("videoUrlEn"+integer);
 				String imgUrl   = request.getParameter("imgUrl"+integer);
 				Plot p = new Plot();
 				p.setAnimatedID(animatedID);
 				p.setWhichEpisode(Integer.valueOf(which));
 				p.setPlotName(plotName);
-				p.setVideoUrl(videoUrl);
+				p.setVideoUrlCh(videoUrlCh);
+				p.setVideoUrlEn(videoUrlEn);
 				p.setImgUrl(imgUrl);
 				plotService.add(p);
 			}
@@ -196,7 +198,8 @@ public class ManageController {
 			String down  = request.getParameter("down");
 			String plotName = request.getParameter("plotName");
 			String whichEpisode = request.getParameter("whichEpisode");
-			String videoUrl = request.getParameter("videoUrl");
+			String videoUrlCh = request.getParameter("videoUrlCh");
+			String videoUrlEn = request.getParameter("videoUrlEn");
 			String imgUrl = request.getParameter("imgUrl");
 			Plot p = plotService.queOne(pid);
 			p.setTitle(title);
@@ -205,7 +208,8 @@ public class ManageController {
 			p.setDown(down); 
 			p.setPlotName(plotName);
 			p.setWhichEpisode(Integer.valueOf(whichEpisode));
-			p.setVideoUrl(videoUrl);
+			p.setVideoUrlCh(videoUrlCh);
+			p.setVideoUrlEn(videoUrlEn);
 			p.setImgUrl(imgUrl);
 			plotService.up(p);
 			return "更新成功";

@@ -10,7 +10,8 @@ public class Plot {
 	public int animatedID; // 影片的id
 	public String plotName; // 剧情的名字
 	public int whichEpisode; // 哪一集
-	public String videoUrl; // 视频的地址
+	public String videoUrlCh; // 中文视频的地址
+	public String videoUrlEn; // 英文视频的地址
 	public String imgUrl;   // 图片的地址
 	
 	public String title; // 网页的标题
@@ -42,11 +43,17 @@ public class Plot {
 	public void setWhichEpisode(int whichEpisode) {
 		this.whichEpisode = whichEpisode;
 	}
-	public String getVideoUrl() {
-		return videoUrl;
+	public String getVideoUrlCh() {
+		return videoUrlCh;
 	}
-	public void setVideoUrl(String videoUrl) {
-		this.videoUrl = videoUrl;
+	public void setVideoUrlCh(String videoUrlCh) {
+		this.videoUrlCh = videoUrlCh;
+	}
+	public String getVideoUrlEn() {
+		return videoUrlEn;
+	}
+	public void setVideoUrlEn(String videoUrlEn) {
+		this.videoUrlEn = videoUrlEn;
 	}
 	public String getImgUrl() {
 		return imgUrl;

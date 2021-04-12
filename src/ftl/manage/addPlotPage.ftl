@@ -24,7 +24,8 @@
     <tr>
       <th scope="col">哪一集</th>
       <th scope="col">标题</th>
-      <th scope="col">视频地址</th>
+      <th scope="col">中文视频地址</th>
+      <th scope="col">英文视频地址</th>
       <th scope="col">图片地址</th>
     </tr>
   </thead>
@@ -34,61 +35,71 @@
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which1"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName1"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl1"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh1"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn1"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl1"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which2"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName2"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl2"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh2"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn2"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl2"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which3"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName3"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl3"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh3"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn3"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl3"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which4"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName4"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl4"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh4"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn4"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl4"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which5"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName5"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl5"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh5"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn5"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl5"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which6"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName6"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl6"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh6"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn6"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl6"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which7"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName7"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl7"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh7"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn7"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl7"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which8"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName8"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl8"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh8"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn8"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl8"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which9"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName9"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl9"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh9"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn9"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl9"  ></td>
 	    </tr>
 	    <tr>
 	      <td><input type="number" class="form-control is-valid" name="which10"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="plotName10"  ></td>
-	      <td><input type="text" class="form-control is-valid" name="videoUrl10"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlCh10"  ></td>
+	      <td><input type="text" class="form-control is-valid" name="videoUrlEn10"  ></td>
 	      <td><input type="text" class="form-control is-valid" name="imgUrl10"  ></td>
 	    </tr>
 	    <tr id="lineLast">
