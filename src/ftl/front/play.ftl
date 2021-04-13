@@ -32,7 +32,7 @@ ${(plot.meta)!""}
 			  	中文 ${(plot.plotNameCh)!""}
 			</div>
 			<video  id="my-video1" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
-				<source src="${(plot.videoUrlCh)!""}" type="video/mp4">
+				<source src="${indexpath}/front/getPlay.action?type=ch&plotID=${(plot.id)!""}" type="video/mp4">
 		  	</video>
 		</div>
 		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
@@ -40,7 +40,7 @@ ${(plot.meta)!""}
 			  	英文 ${(plot.plotNameEn)!""}
 			</div>
 			<video  id="my-video2" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
-				<source src="${(plot.videoUrlEn)!""}" type="video/mp4">
+				<source src="${indexpath}/front/getPlay.action?type=en&plotID=${(plot.id)!""}" type="video/mp4">
 		  	</video>
 		</div>
 	</div>

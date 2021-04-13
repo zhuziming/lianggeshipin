@@ -1,5 +1,6 @@
 package com.lianggeshipin.www.model;
 
+import java.sql.Timestamp;
 
 public class User {
 	
@@ -12,6 +13,7 @@ public class User {
 	private String sex;		//  性别 长度1[男][女]
 	private String onlyID; // 用户在微信中的ID
 	private String appID;  // 用户在应用中的ID
+	private Timestamp vipTime; // 会员到期时间
 	
 	public Integer getId() {
 		return id;
@@ -67,4 +69,11 @@ public class User {
 	public void setAppID(String appID) {
 		this.appID = appID;
 	}
+	public Timestamp getVipTime() {
+		return vipTime;
+	}
+	public void setVipTime(Timestamp vipTime) {
+		this.vipTime = vipTime;
+	}
+	
 }

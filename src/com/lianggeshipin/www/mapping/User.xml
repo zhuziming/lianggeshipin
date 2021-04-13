@@ -3,9 +3,9 @@
 
 <mapper namespace="com.lianggeshipin.www.dao.IUserDao">
     <insert id="add" parameterType="com.lianggeshipin.www.model.User" keyProperty="id" useGeneratedKeys="true">
-    	INSERT user(id,account,nickname,password,phone,picture,sex,only_id,app_id) 
+    	INSERT user(id,account,nickname,password,phone,picture,sex,only_id,app_id,vip_time) 
 		VALUES(#{id},#{account},#{nickname},#{password},#{phone},
-		#{picture},#{sex},#{onlyID},#{appID});
+		#{picture},#{sex},#{onlyID},#{appID},"2021-01-01 00:00:00");
     </insert>
     
     <delete id="del" parameterType="int">
@@ -21,14 +21,18 @@
     
     <select id="getOne" parameterType="int" resultType="com.lianggeshipin.www.model.User">
     	select id,account,nickname,password,phone,picture,sex,
-    	only_id AS onlyID,app_id AS appID 
+    	only_id AS onlyID,app_id AS appID,vip_time AS vipTime 
     	from user;
     </select>
     
     <select id="getOneByAppID" parameterType="int" resultType="com.lianggeshipin.www.model.User">
     	select id,account,nickname,password,phone,picture,sex,
-    	only_id AS onlyID,app_id AS appID 
+    	only_id AS onlyID,app_id AS appID,vip_time AS vipTime 
     	from user WHERE app_id = #{appID};
     </select>
+    
+    <update id="upVipTime" parameterType="com.lianggeshipin.www.model.User">
+    	UPDATE user set vip_time=#{vipTime,jdbcType=TIMESTAMP} where id=#{id}
+    </update>
     
 </mapper>

@@ -1,5 +1,6 @@
 package com.lianggeshipin.www.service.impl;
 
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import com.lianggeshipin.www.dao.IUserDao;
 import com.lianggeshipin.www.model.User;
 import com.lianggeshipin.www.service.IUserService;
 @Service("userServiceImpl")
-public class IUserServiceImpl implements IUserService {
+public class UserServiceImpl implements IUserService {
 	@Resource
 	public IUserDao dao;
 	
@@ -34,5 +35,9 @@ public class IUserServiceImpl implements IUserService {
 	@Override
 	public User getOneByAppID(String appID){
 		return dao.getOneByAppID(appID);
+	}
+	@Override
+	public int upVipTime(User user) {
+		return dao.upVipTime(user);
 	}
 }

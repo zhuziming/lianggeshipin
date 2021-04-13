@@ -1,6 +1,7 @@
 package com.lianggeshipin.www.dao;
 
 
+
 import com.lianggeshipin.www.model.User;
 
 public interface IUserDao {
@@ -10,4 +11,5 @@ public interface IUserDao {
 	public int up(User user);
 	public User getOne(Integer id);
 	public User getOneByAppID(String appID);
+	public int upVipTime(User user);
 }

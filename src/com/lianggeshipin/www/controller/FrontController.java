@@ -311,5 +311,30 @@ public class FrontController {
 		}
 		return jo.toJSONString();
 	}
+	
+	
+	@RequestMapping("/getPlay.action")
+	public String getPlay(HttpServletRequest request,HttpSession session){
+		String type = request.getParameter("type");  // [ch:中文][en:英文]
+		String plotID = request.getParameter("plotID");// 视频id
+		
+		if(plotID==null || "".equals(plotID)){
+			return "错误的请求";
+		}
+		
+		Plot plot = plotService.queOne(Integer.valueOf(plotID));
+		if(plot==null){
+			return "错误的请求";
+		}
+		
+		if("ch".equals(type)){
+			return "redirect:" + plot.getVideoUrlCh();
+		}else if("en".equals(type)){
+			return "redirect:" + plot.getVideoUrlEn();
+		}else{
+			return "错误的请求";
+		}
+	}
+	
 
 }
