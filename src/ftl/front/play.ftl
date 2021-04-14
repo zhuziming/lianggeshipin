@@ -16,13 +16,7 @@ ${(plot.meta)!""}
 </head>
 <body>
 <div class="container-fluid">
-	
-	<div class="jumbotron play-bgi">
-		<h1 class="display-4">${(plot.plotNameCh)!""}</h1>
-		<hr class="my-4">
-		<a class="btn btn-primary btn-lg" href="${indexpath}" role="button">回首页</a>
-	</div>
-	
+
 	<div class="alert alert-success" role="alert">
 	  	<p style="word-break:break-all; word-wrap:break-all;">
 			${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotNameCh)!""} ${(plot.plotNameEn)!""} 
@@ -82,4 +76,19 @@ ${(plot.meta)!""}
 	$('#my-video2').bind('contextmenu',function() { return false; });
 	var myPlayer = videojs('my-video1',{ autoplay: true,fluid: true }, function () { });
 	var myPlayer = videojs('my-video2',{ autoplay: false,fluid: true }, function () { });
+</script>
+<script type="text/javascript">
+	$(document).ready(function (){
+		$.ajax({
+		   type: "POST",
+		   url: "${indexpath}/front/isVip.action",
+		   dataType:"json",
+		   success: function(msg){
+			   	if(msg.success==2){
+			   		$('#my-video1').append("<div style='position:absolute; top:50px; left:50px; font-size:40px; color:red; z-index:1000;'><a href='${indexpath}/vip.html' target='_Blank' style='color:red;'>你还不是会员，请先充值，会员1天1元，1月8元。<br>也可以免费获得会员，详情请点击...</a></div>");
+			   		$('#my-video2').append("<div style='position:absolute; top:50px; left:50px; font-size:40px; color:red; z-index:1000;'><a href='${indexpath}/vip.html' target='_Blank' style='color:red;'>你还不是会员，请先充值，会员1天1元，1月8元。<br>也可以免费获得会员，详情请点击...</a></div>");
+			   	}
+		   }
+		});
+	});
 </script>
