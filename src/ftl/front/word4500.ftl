@@ -16,6 +16,7 @@
 <div class="container-fluid">
 	<div class="jumbotron play-bgi">
 		<h1 class="display-4">英语4级，常用4500单词图片记忆</h1>
+		<p>如果你对我们给出的图片不满意，而你手上有更好的图片，请联系我们的客服分享你的图片，我们会奖励你一天会员。联系位置在首页低部。</p>
 		<hr class="my-4">
 		<a class="btn btn-primary btn-lg" href="${indexpath}" role="button">回首页</a>
 	</div>
@@ -41,19 +42,19 @@
 		    </li>
 		  </ul>
 		</nav>
-	<#elseif pageNum gt 211>
+	<#elseif pageNum gt 213>
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination justify-content-end">
 		    <li class="page-item">
 		      <a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=1">首页</a>
 		    </li>
-		    <li class="page-item <#if pageNum == 208>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=208">208</a></li>
-		    <li class="page-item <#if pageNum == 209>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=209">209</a></li>
 		    <li class="page-item <#if pageNum == 210>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=210">210</a></li>
 		    <li class="page-item <#if pageNum == 211>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=211">211</a></li>
 		    <li class="page-item <#if pageNum == 212>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=212">212</a></li>
 		    <li class="page-item <#if pageNum == 213>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=213">213</a></li>
 		    <li class="page-item <#if pageNum == 214>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=214">214</a></li>
+		    <li class="page-item <#if pageNum == 215>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=215">215</a></li>
+		    <li class="page-item <#if pageNum == 216>active</#if>"><a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=216">216</a></li>
 		    <li class="page-item">
 		      <a class="page-link" href="${indexpath}/front/word4500Page.action?pageNum=216">末页</a>
 		    </li>

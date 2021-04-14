@@ -82,7 +82,10 @@
 
 	</div>
 <footer class="blog-footer">
-	  <p><a class="alert alert-light" target="_blank" href="http://beian.miit.gov.cn">豫ICP备2020033396</a></p>
+		<p>
+			<a class="alert alert-light" target="_blank" href="http://beian.miit.gov.cn">豫ICP备2020033396</a>
+	  		<a class="alert alert-light" target="_blank" href="${indexpath}/vip.html">联系我们</a>
+		</p>
 </footer>
 </body>
 </html>
