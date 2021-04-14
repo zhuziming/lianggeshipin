@@ -52,7 +52,7 @@ public class DateUtil {
 		return sdf.format(nowTime);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		long curSysTime = System.currentTimeMillis();
@@ -66,6 +66,12 @@ public class DateUtil {
 	      
 	      Timestamp ta = new Timestamp(System.currentTimeMillis());
 	      System.out.println(ta.getTime());
+	      
+
+	      Date date = sdf.parse("2022-01-01 00:00:00");
+	      System.out.println(System.currentTimeMillis() > date.getTime());
+	      
+	      
 	}
 	
 }

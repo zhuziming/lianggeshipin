@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotNameCh)!""} ${(plot.plotNameEn)!""} 中文 英文播放 台词字幕 ${(plot.down)!""}</title>
+<title>${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotNameCh)!""} ${(plot.plotNameEn)!""} 中文 英文播放 台词字幕 下载${(plot.down)!""}</title>
 ${(plot.meta)!""}
 <link rel="stylesheet" href="${csspath}/lianggeshipin.css">
 <link rel="stylesheet" href="${csspath}/boots/bootstrap.min.css">
@@ -24,7 +24,10 @@ ${(plot.meta)!""}
 	</div>
 	
 	<div class="alert alert-success" role="alert">
-	  	${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotNameCh)!""} ${(plot.plotNameEn)!""} 中文 英文播放   ${(plot.down)!""}
+	  	<p style="word-break:break-all; word-wrap:break-all;">
+			${(animated.animatedName)!""}  第 ${(plot.whichEpisode)!""} 集 ${(plot.plotNameCh)!""} ${(plot.plotNameEn)!""} 
+	  		中文 英文播放   下载${(plot.down)!""}
+		</p>
 	</div>
 	<div class="row">
 		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">

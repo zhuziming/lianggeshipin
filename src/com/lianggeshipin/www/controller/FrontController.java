@@ -2,6 +2,7 @@ package com.lianggeshipin.www.controller;
 
 
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -312,9 +313,40 @@ public class FrontController {
 		return jo.toJSONString();
 	}
 	
+	@ResponseBody
+	@RequestMapping("/isVip.action")
+	public String isVip(HttpSession session){
+		Object obj = session.getAttribute("user");
+		JSONObject jo = new JSONObject();
+		if(obj==null){
+			jo.put("success", "2");
+			jo.put("msg", "你还没有登录，请先登录");
+			return jo.toString();
+		}
+		long vip_time = ((User)obj).getVipTime().getTime(); // 会员时间
+		long now_time = System.currentTimeMillis(); // 系统当前时间
+		if(vip_time < now_time){ // 如果会员时间，小于当前时间，说明不是会员
+			jo.put("success", "2");
+			jo.put("msg", "你还不是会员，请先充值");
+			return jo.toString();
+		}
+		jo.put("success", "1");
+		return jo.toString();
+	}
 	
 	@RequestMapping("/getPlay.action")
 	public String getPlay(HttpServletRequest request,HttpSession session){
+		Object obj = session.getAttribute("user");
+		if(obj==null){
+			return "你还没有登录，请先登录";
+		}
+		long vip_time = ((User)obj).getVipTime().getTime(); // 会员时间
+		long now_time = System.currentTimeMillis(); // 系统当前时间
+		if(vip_time < now_time){ // 如果会员时间，小于当前时间，说明不是会员
+			return "你还不是会员，请先充值";
+		}
+		
+		
 		String type = request.getParameter("type");  // [ch:中文][en:英文]
 		String plotID = request.getParameter("plotID");// 视频id
 		
