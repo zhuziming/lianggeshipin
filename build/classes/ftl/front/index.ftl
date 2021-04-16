@@ -118,7 +118,7 @@
 		   dataType:"json",
 		   success: function(msg){
 			   	if(msg.success==1){
-			   		$("#weixinFlag").attr("href","#");
+			   		$("#weixinFlag").attr("href","${indexpath}/front/personal.action");
 			   		$("#weixinFlag").text(msg.ele);
 			   	}
 		   }

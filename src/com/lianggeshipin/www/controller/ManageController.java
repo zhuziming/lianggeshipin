@@ -1,6 +1,7 @@
 package com.lianggeshipin.www.controller;
 
-import java.io.File;
+
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -15,12 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lianggeshipin.www.dao.IWord1000Dao;
+import com.alibaba.fastjson.JSONObject;
 import com.lianggeshipin.www.model.Animated;
 import com.lianggeshipin.www.model.Plot;
-import com.lianggeshipin.www.model.Word_1000;
+import com.lianggeshipin.www.model.User;
+import com.lianggeshipin.www.model.VipCard;
 import com.lianggeshipin.www.service.IAnimatedService;
 import com.lianggeshipin.www.service.IPlotService;
+import com.lianggeshipin.www.service.IUserService;
+import com.lianggeshipin.www.service.IVipCardService;
 import com.lianggeshipin.www.service.IWord_1000Service;
 import com.lianggeshipin.www.util.FreeMarkerUtil;
 import com.lianggeshipin.www.util.InitUtil;
@@ -35,7 +39,10 @@ public class ManageController {
 	private IPlotService plotService;
 	@Resource
 	private IWord_1000Service word_1000Service;
-	
+	@Resource
+	private IUserService userService;
+	@Resource
+	private IVipCardService vipCardService;
 	
 	@RequestMapping("/index.action")
 	public String indexPage(Model model){
@@ -301,6 +308,80 @@ public class ManageController {
 			return "失败";
 		}
 		
+	}
+	
+	@RequestMapping("/queUserPage.action")
+	public String queUserPage(HttpServletRequest request,Model model){
+		String s_page = request.getParameter("page");
+		if(s_page==null || "".equals(s_page)){
+			s_page="1";
+		}
+		List<User> userList = userService.getListPage(Integer.valueOf(s_page));
+		// 如果数据量等于50，则进行分页查询
+		if(userList.size() == 50){
+			double count = userService.getUserCount();
+			double pageSum =  Math.ceil(count / 50.0);
+			model.addAttribute("pageSum",pageSum);
+		}
+		
+		InitUtil.iniSystem(model);
+		model.addAttribute("userList", userList);
+		model.addAttribute("page",s_page);
+		return "manage/userListPage";
+	}
+	
+	@RequestMapping("/getUserByNickname.action")
+	public String getUserByNickname(HttpServletRequest request,Model model){
+		String nickname = request.getParameter("nickname");
+		List<User> userList = userService.getUserByNickname(nickname);
+		InitUtil.iniSystem(model);
+		model.addAttribute("userList", userList);
+		return "manage/userListPage";
+	}
+	
+	@RequestMapping("/personal.action")
+	public String personal(HttpServletRequest request,Model model){
+		String userID = request.getParameter("userID");
+		User user = userService.getOne(Integer.valueOf(userID));
+		List<VipCard> vipCardList = vipCardService.getListByUserID(Integer.valueOf(userID));
+		int vipCardNum = vipCardService.getCountByUserID(Integer.valueOf(userID));
+		
+		model.addAttribute("user",user);
+		model.addAttribute("vipCardList",vipCardList);
+		model.addAttribute("vipCardNum",vipCardNum);
+		InitUtil.iniSystem(model);
+		return "manage/personal";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/sendVip.action")
+	public String sendVip(HttpServletRequest request){
+		String day = request.getParameter("day");
+		String userID = request.getParameter("userID");
+		JSONObject jo = new JSONObject();
+		
+		VipCard vipCard = new VipCard();
+		vipCard.setEmploy("no");
+		if("1".equals(day)){
+			vipCard.setName("1天会员");
+		}else if("7".equals(day)){
+			vipCard.setName("7天会员");
+		}else if("30".equals(day)){
+			vipCard.setName("30天会员");
+		}else if("365".equals(day)){
+			vipCard.setName("1年会员");
+		}else{
+			jo.put("success", "2");
+			jo.put("msg", "错误的参数");
+			return jo.toString();
+		}
+		
+		vipCard.setTime(new Timestamp(System.currentTimeMillis()));
+		vipCard.setUserID(Integer.valueOf(userID));
+		vipCardService.add(vipCard);
+		jo.put("success", "1");
+		jo.put("msg", "添加成功");
+		return jo.toString();
 	}
 	
 	@RequestMapping("/test.action")

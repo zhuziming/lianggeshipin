@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lianggeshipin.www.dao.IVipCardDao">
+    <insert id="add" parameterType="com.lianggeshipin.www.model.VipCard" keyProperty="id" useGeneratedKeys="true">
+    	INSERT vip_card(id,user_id,time,name,employ) 
+		VALUES(#{id},#{userID},#{time,jdbcType=TIMESTAMP},#{name},#{employ});
+    </insert>
+    
+    <delete id="del" parameterType="int">
+    	DELETE FROM vip_card where id=#{id}
+    </delete>
+    
+    <update id="up" parameterType="com.lianggeshipin.www.model.VipCard">
+    	UPDATE vip_card set user_id=#{userID},time=#{time,jdbcType=TIMESTAMP},name=#{name},employ=#{employ} 
+    	where id=#{id}
+    </update>
+    
+    <select id="getOne" parameterType="int" resultType="com.lianggeshipin.www.model.VipCard">
+    	SELECT id,user_id AS userID,time,name,employ FROM vip_card
+    	where id=#{id}
+    </select>
+    
+    <select id="getListByUserID" parameterType="int" resultType="com.lianggeshipin.www.model.VipCard">
+    	SELECT id,user_id AS userID,time,name,employ FROM vip_card
+    	where user_id=#{userID} AND employ='no'
+    </select>
+
+    <select id="getCountByUserID" parameterType="int" resultType="int">
+    	SELECT count(1) FROM vip_card
+    	where user_id=#{userID} AND employ='no'
+    </select>
+</mapper>

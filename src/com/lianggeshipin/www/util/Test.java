@@ -1,29 +1,11 @@
 package com.lianggeshipin.www.util;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Test {
 
 	public static void main(String[] args) {
-		List<String> files = new ArrayList<String>();
-		// E:\英语资料\4500完成\4500成品
-        File file = new File("E:\\英语资料\\4500完成\\4500成品");
-        File[] tempList = file.listFiles();
-
-        for (int i = 0; i < tempList.length; i++) {
-            if (tempList[i].isFile()) {
-            	String name = tempList[i].getName();
-            	String[] str = name.split("\\.");
-            	System.out.println(str[0] + " " + str[1]);
-            	
-            }
-            if(i>20){
-            	return;
-            }
-        }
-
+		double sum = Math.ceil(52 / 50);
+		System.out.println(sum);
 	}
 
 	/**

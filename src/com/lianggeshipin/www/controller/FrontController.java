@@ -1,7 +1,5 @@
 package com.lianggeshipin.www.controller;
 
-
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -10,17 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.lianggeshipin.www.model.Plot;
 import com.lianggeshipin.www.model.User;
+import com.lianggeshipin.www.model.VipCard;
 import com.lianggeshipin.www.model.Word_1000;
 import com.lianggeshipin.www.model.Word_4500;
 import com.lianggeshipin.www.service.IPlotService;
+import com.lianggeshipin.www.service.IUserService;
+import com.lianggeshipin.www.service.IVipCardService;
 import com.lianggeshipin.www.service.IWord_1000Service;
 import com.lianggeshipin.www.service.IWord_4500Service;
+import com.lianggeshipin.www.util.DateUtil;
 import com.lianggeshipin.www.util.InitUtil;
 import com.lianggeshipin.www.util.PropertiesUtil;
 
@@ -37,7 +40,10 @@ public class FrontController {
 	@Resource
 	private IPlotService plotService;
 	
-
+	@Resource
+	private IUserService userService;
+	@Resource
+	private IVipCardService vipCardService;
 	
 	/**
 	 * @description 得到页数，然后返回页面
@@ -368,5 +374,73 @@ public class FrontController {
 		}
 	}
 	
+	@RequestMapping("/personal.action")
+	public String personal(HttpSession session,Model model){
+		Object obj = session.getAttribute("user");
+		if(obj==null){
+			return "404";
+		}
 
+		User user = (User)obj;
+		List<VipCard> vipCardList = vipCardService.getListByUserID(user.getId());
+		int vipCardNum = vipCardService.getCountByUserID(user.getId());
+		
+		model.addAttribute("user",user);
+		model.addAttribute("vipCardList",vipCardList);
+		model.addAttribute("vipCardNum",vipCardNum);
+		InitUtil.iniSystem(model);
+		return "front/personal";
+	}
+	
+	/**
+	 * @description 激活会员卡
+	 * @author zhuziming
+	 * @time 2021年4月16日 下午3:54:07
+	 * @param request
+	 * @return
+	 */
+	@ResponseBody
+	@Transactional
+	@RequestMapping("/activation.action")
+	public String activation(HttpServletRequest request){
+		String vipCardID = request.getParameter("vipCardID");
+		VipCard vipCard = vipCardService.getOne(Integer.valueOf(vipCardID));
+		JSONObject jo = new JSONObject();
+		if(vipCard!=null){
+			Object obj = request.getSession().getAttribute("user");
+			if(obj!=null){
+				User user = (User)obj;
+				if(user.getId()==vipCard.getUserID()){ // 验证这个会员卡是否是这个用户的
+					// 1、把会员卡的状态改为使用过
+					vipCard.setEmploy("yes");
+					vipCardService.up(vipCard);
+					// 2、把用户的会员时间改变
+					Timestamp user_timestamp = user.getVipTime();
+					Timestamp newTime = new Timestamp(System.currentTimeMillis());
+					if(user_timestamp.getTime() < System.currentTimeMillis()){
+						// 如果用户的时间小于当前时间，说明会员已过期，将当前时间做为开始时间
+						user_timestamp = new Timestamp(System.currentTimeMillis());
+					}
+					if("1天会员".equals(vipCard.getName())){
+						newTime = DateUtil.timeAddDayToTimestamp(user_timestamp,1);
+					}else if("7天会员".equals(vipCard.getName())){
+						newTime = DateUtil.timeAddDayToTimestamp(user_timestamp,7);
+					}else if("30天会员".equals(vipCard.getName())){
+						newTime = DateUtil.timeAddDayToTimestamp(user_timestamp,30);
+					}else if("1年会员".equals(vipCard.getName())){
+						newTime = DateUtil.timeAddDayToTimestamp(user_timestamp,365);
+					}
+					user.setVipTime(newTime);
+					userService.upVipTime(user);
+					request.getSession().setAttribute("user", user); // 刷新session
+					jo.put("success", "1");
+					jo.put("msg", "激活成功");
+					return jo.toString();
+				}
+			}
+		}
+		jo.put("success", "2");
+		jo.put("msg", "失败，请联系客服处理");
+		return jo.toString();
+	}
 }

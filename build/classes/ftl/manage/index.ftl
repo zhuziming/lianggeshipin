@@ -19,6 +19,7 @@
 	<ul class="list-group">
 	  <li class="list-group-item"><a href="${indexpath}/manage/addAnimatedPage.action">添加动漫名称</a></li>
 	  <li class="list-group-item"><a href="${indexpath}/manage/queAnimatedPage.action">查寻所有动漫</a></li>
+	  <li class="list-group-item"><a href="${indexpath}/manage/queUserPage.action">查寻所有用户</a></li>
 	  <li class="list-group-item"><a href="javascript:createIndex()">重新生成首页</a></li>
 	  <li class="list-group-item"><a href="javascript:createBaiduXml()">生成百度推广文件</a></li>
 	</ul>

@@ -52,26 +52,21 @@ public class DateUtil {
 		return sdf.format(nowTime);
 	}
 	
+	public static long timeAddDayToLong(Timestamp timestamp,Integer day){
+		long nowTime = timestamp.getTime() + day*24*60*60*1000L;
+		return nowTime;
+	}
+	
+	public static Timestamp timeAddDayToTimestamp(Timestamp timestamp,Integer day){
+		long nowTime = timestamp.getTime() + day*24*60*60*1000L;
+		return new Timestamp(nowTime);
+	}
+	
 	public static void main(String[] args) throws ParseException {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		long curSysTime = System.currentTimeMillis();
-	      System.out.println(curSysTime);
-	      System.out.println(new Date(curSysTime));
-
-	      long deadtime=curSysTime-7*24*60*60*1000L;
-	      System.out.println(deadtime);
-	      System.out.println(new Date(deadtime));
-	      System.out.println(sdf.format(deadtime));
-	      
-	      Timestamp ta = new Timestamp(System.currentTimeMillis());
-	      System.out.println(ta.getTime());
-	      
-
-	      Date date = sdf.parse("2022-01-01 00:00:00");
-	      System.out.println(System.currentTimeMillis() > date.getTime());
-	      
-	      
+		
+		Timestamp t = timeAddDayToTimestamp(new Timestamp(System.currentTimeMillis()),1);
+		System.out.println(t);
 	}
 	
 }
