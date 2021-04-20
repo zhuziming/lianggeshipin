@@ -94,6 +94,8 @@ public class IndexController {
 				user.setPicture(headimgurl);
 				user.setNickname(nickname);
 				userService.add(user);
+				// 第一次登陆时，user对象还没有时间参数，所以从数据库中查一次
+				user = userService.getOneByAppID(unionid);
 			}else{
 			// 若用户第二次登陆，则不做操作	
 				

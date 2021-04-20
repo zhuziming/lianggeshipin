@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="http://localhost:8080/lianggeshipin/css/boots/bootstrap.min.css">
+<link rel="stylesheet" href="http://localhost:8080/lianggeshipin/css/video-js.css">
+<title>Insert title here</title>
+<script src="http://localhost:8080/lianggeshipin/js/jquery.min.js"></script>
+<script src="http://localhost:8080/lianggeshipin/js/video.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+	<div class="alert alert-success" role="alert">
+	  	小猪佩奇第一季 第1集 中文 英文 对照学习  对照学习 对照学习
+	</div>
+	<div class="row">
+		<div class="col-lg-9 col-md-12 col-sm-12 mb-3">
+			<video  id="my-video1" class="video-js" controls preload="auto"  poster="http://localhost:8080/lianggeshipin/image/test.jpg">
+				<source src="http://localhost:8080/lianggeshipin/mp4/test.mp4" type="video/mp4">
+		  	</video>
+		</div>
+		<div class="col-lg-3 col-md-12 col-sm-12">
+			<a href="#" type="button" class="btn btn-light btn-lg btn-block">vip<span class="float-right">vip</span></a>
+			<a href="#" type="button" class="btn btn-primary btn-lg btn-block">vip<span class="float-right">vip</span></a>
+		</div>
+	</div>
+	
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	var myPlayer = videojs('my-video1',{ autoplay: true,fluid: true }, function () { });
+</script>

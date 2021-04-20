@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
+import com.lianggeshipin.www.model.CourseWhich;
 import com.lianggeshipin.www.model.Plot;
 import com.lianggeshipin.www.model.User;
 import com.lianggeshipin.www.model.VipCard;
 import com.lianggeshipin.www.model.Word_1000;
 import com.lianggeshipin.www.model.Word_4500;
+import com.lianggeshipin.www.service.ICourseWhichService;
 import com.lianggeshipin.www.service.IPlotService;
 import com.lianggeshipin.www.service.IUserService;
 import com.lianggeshipin.www.service.IVipCardService;
@@ -33,18 +35,16 @@ public class FrontController {
 
 	@Resource
 	private IWord_1000Service word_1000Service;
-	
 	@Resource
 	private IWord_4500Service word_4500Service;
-	
 	@Resource
 	private IPlotService plotService;
-	
 	@Resource
 	private IUserService userService;
 	@Resource
 	private IVipCardService vipCardService;
-	
+	@Resource
+	private ICourseWhichService courseWhichService;
 	/**
 	 * @description 得到页数，然后返回页面
 	 * @author zhuziming
@@ -443,4 +443,54 @@ public class FrontController {
 		jo.put("msg", "失败，请联系客服处理");
 		return jo.toString();
 	}
+	
+	@RequestMapping("/getCourse.action")
+	public String getCourse(HttpServletRequest request,HttpSession session){
+		String courseWhichID = request.getParameter("courseWhichID");
+		CourseWhich courseWhich = courseWhichService.getOne(Integer.valueOf(courseWhichID));
+		
+		Object obj = session.getAttribute("user");
+		if(obj==null){ // 未登录的流程
+			if(courseWhich.getStatus()==1){ // 免费
+				return "redirect:" + courseWhich.getFreeUrl();
+			}
+		}else{ // 登录后的流程
+			long vip_time = ((User)obj).getVipTime().getTime(); // 会员时间
+			long now_time = System.currentTimeMillis(); // 系统当前时间
+			if(vip_time < now_time){ // 不是会员
+				if(courseWhich.getStatus()==1){ // 免费
+					return "redirect:" + courseWhich.getFreeUrl();
+				}
+			}else{ // 是会员
+				return "redirect:" + courseWhich.getChargeUrl();
+			}
+		}
+		return "您还不是会员";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/isCoursePlay.action")
+	public boolean isCoursePlay(HttpServletRequest request,HttpSession session){
+		String courseWhichID = request.getParameter("courseWhichID");
+		CourseWhich courseWhich = courseWhichService.getOne(Integer.valueOf(courseWhichID));
+		boolean flag=false ; // 这个课程能播吗？
+		Object obj = session.getAttribute("user");
+		if(obj==null){ // 未登录的流程
+			if(courseWhich.getStatus()==1){ // 免费
+				flag=true;
+			}
+		}else{ // 登录后的流程
+			long vip_time = ((User)obj).getVipTime().getTime(); // 会员时间
+			long now_time = System.currentTimeMillis(); // 系统当前时间
+			if(vip_time < now_time){ // 不是会员
+				if(courseWhich.getStatus()==1){ // 免费
+					flag=true;
+				}
+			}else{ // 是会员
+				flag=true;
+			}
+		}
+		return flag;
+	}
+	
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lianggeshipin.www.dao.ICourseWhichDao">
+    <insert id="add" parameterType="com.lianggeshipin.www.model.CourseWhich" keyProperty="id" useGeneratedKeys="true">
+    	INSERT course_which(id,course_id,which_episode,name,charge_url,free_url,status)
+		VALUE(#{id},#{courseID},#{whichEpisode},#{name},#{chargeUrl},#{freeUrl},#{status})
+    </insert>
+    
+    <delete id="del" parameterType="int">
+    	DELETE FROM course_which where id=#{id}
+    </delete>
+    
+    <update id="up" parameterType="com.lianggeshipin.www.model.CourseWhich">
+    	UPDATE course_which set course_id=#{courseID},which_episode=#{whichEpisode},
+    	name=#{name},charge_url=#{chargeUrl},free_url=#{freeUrl},status=#{status} 
+		WHERE id=#{id}
+    </update>
+    
+    <select id="getOne" parameterType="int" resultType="com.lianggeshipin.www.model.CourseWhich">
+    	select id,course_id AS courseID,which_episode AS whichEpisode,name,
+    	charge_url AS chargeUrl,free_url AS freeUrl,status 
+    	from course_which WHERE id=#{id}
+    </select>
+   
+    <select id="getListByCourseID" parameterType="int" resultType="com.lianggeshipin.www.model.CourseWhich">
+    	select id,course_id AS courseID,which_episode AS whichEpisode,name,
+    	charge_url AS chargeUrl,free_url AS freeUrl,status 
+    	from course_which WHERE course_id=#{courseID}
+    </select>
+</mapper>

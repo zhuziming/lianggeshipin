@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.lianggeshipin.www.model.Animated;
+import com.lianggeshipin.www.model.Course;
+import com.lianggeshipin.www.model.CourseWhich;
 import com.lianggeshipin.www.model.Plot;
 
 import freemarker.template.Configuration;
@@ -84,7 +86,7 @@ public class FreeMarkerUtil {
 	 * @time 2020年11月5日 上午11:13:34
 	 * @param plotList
 	 */
-	public static void createPlay(Plot plot,List<Plot> plotList,Animated ani){
+	public static void createPlay(Plot plot,List<Plot> plotList,Animated ani,List<Course> courseList){
 		// 准备数据
 		Map<String ,Object> data = new HashMap<String, Object>();
 		String indexpath = PropertiesUtil.getValue("system.properties", "indexpath");
@@ -104,6 +106,7 @@ public class FreeMarkerUtil {
 		data.put("animated",ani);
 		data.put("webMp4Path",webMp4Path);
 		data.put("animatedImgPath",animatedImgPath);
+		data.put("courseList",courseList);
 		
 		// 目录要一级一级的创建，否则会失败
 		String deskpath = projectPath+"/"+ani.getId()+"/";
@@ -121,6 +124,53 @@ public class FreeMarkerUtil {
 		Template tmp = FreeMarkerUtil.getTemplate(freeMarkerFtlpath,"front/play.ftl");
 		// 得到生成对象
 		Writer writer = FreeMarkerUtil.getWriter(projectPath+"/"+ani.getId()+"/"+plot.getWhichEpisode()+".html");	
+		try {
+			// 生成网页
+			tmp.process(data, writer);
+			// 清空缓存
+			writer.flush();
+			writer.close();
+		} catch (TemplateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void createCourse(Course course, CourseWhich courseWhich, List<CourseWhich> courseWhichList){
+		// 准备数据
+		Map<String ,Object> data = new HashMap<String, Object>();
+		String indexpath = PropertiesUtil.getValue("system.properties", "indexpath");
+		String imgpath = PropertiesUtil.getValue("system.properties", "imgpath");
+		String csspath = PropertiesUtil.getValue("system.properties", "csspath");
+		String jspath = PropertiesUtil.getValue("system.properties", "jspath");
+		String projectPath = PropertiesUtil.getValue("system.properties", "projectPath");
+		String freeMarkerFtlpath = PropertiesUtil.getValue("system.properties", "freeMarkerFtlpath");
+	
+		data.put("indexpath",indexpath);
+		data.put("imgpath",imgpath);
+		data.put("csspath",csspath);
+		data.put("jspath",jspath);
+		data.put("course", course);
+		data.put("courseWhich", courseWhich);
+		data.put("courseWhichList", courseWhichList);
+		// 目录要一级一级的创建，否则会失败
+		String deskpath = projectPath+"/course/"+course.getPlotID()+"/"+course.getId()+"/";
+		String[] desks = deskpath.split("/");
+		String deskpath_1="";
+		for(String desk:desks){
+			deskpath_1 += desk+"/";
+			File deskFile =new File(deskpath_1);    
+			if(!deskFile .exists()  && !deskFile .isDirectory()){
+				deskFile.mkdir();
+			}
+		}
+		
+		// 得到ftl模版
+		Template tmp = FreeMarkerUtil.getTemplate(freeMarkerFtlpath,"front/course.ftl");
+		// 得到生成对象
+		Writer writer = FreeMarkerUtil.getWriter(projectPath+"/course/"+course.getPlotID()+"/"+ course.getId() +"/" +courseWhich.getWhichEpisode()+".html");	
 		try {
 			// 生成网页
 			tmp.process(data, writer);

@@ -18,10 +18,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lianggeshipin.www.model.Animated;
+import com.lianggeshipin.www.model.Course;
+import com.lianggeshipin.www.model.CourseWhich;
 import com.lianggeshipin.www.model.Plot;
 import com.lianggeshipin.www.model.User;
 import com.lianggeshipin.www.model.VipCard;
 import com.lianggeshipin.www.service.IAnimatedService;
+import com.lianggeshipin.www.service.ICourseService;
+import com.lianggeshipin.www.service.ICourseWhichService;
 import com.lianggeshipin.www.service.IPlotService;
 import com.lianggeshipin.www.service.IUserService;
 import com.lianggeshipin.www.service.IVipCardService;
@@ -43,6 +47,10 @@ public class ManageController {
 	private IUserService userService;
 	@Resource
 	private IVipCardService vipCardService;
+	@Resource
+	private ICourseService courseService;
+	@Resource
+	private ICourseWhichService courseWhichService;
 	
 	@RequestMapping("/index.action")
 	public String indexPage(Model model){
@@ -286,8 +294,11 @@ public class ManageController {
 			arrayList.add(m.get(array[i]+""));
 		}
 		
+		
+		
 		for(Plot plot:arrayList){
-			FreeMarkerUtil.createPlay(plot,arrayList,ani);
+			List<Course> courseList = courseService.getListByPlotID(plot.getId());
+			FreeMarkerUtil.createPlay(plot,arrayList,ani,courseList);
 		}
 		return "成功";
 	}
@@ -384,11 +395,212 @@ public class ManageController {
 		return jo.toString();
 	}
 	
-	@RequestMapping("/test.action")
+	@RequestMapping("/addCoursePage.action")
+	public String addCoursePage(HttpServletRequest request,Model model){
+		String plotID = request.getParameter("plotID");
+		Plot plot = plotService.queOne(Integer.valueOf(plotID));
+		model.addAttribute("plot",plot);
+		InitUtil.iniSystem(model);
+		return "manage/addCoursePage";
+	}
+	
 	@ResponseBody
-	public String test(){
+	@RequestMapping("/addCourse.action")
+	public String addCourse(HttpServletRequest request){
+		try{
+			String plotID = request.getParameter("plotID");
+			String courseName = request.getParameter("courseName");
+			String userID = request.getParameter("userID");
+			String courseUrl = request.getParameter("courseUrl");
+			if(courseName==null || courseName.equals("") || userID==null || userID.equals("")){
+				return "参数不能为空";
+			}
+			
+			Course course = new Course();
+			course.setName(courseName);
+			course.setPlotID(Integer.valueOf(plotID));
+			course.setUserID(Integer.valueOf(userID));
+			course.setUrl(courseUrl);
+			courseService.add(course);
+			return "添加成功";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "添加失败";
+	}
+	
+	@RequestMapping("/getCourseListPage.action")
+	public String getCourseListPage(HttpServletRequest request,Model model){
+		String plotID = request.getParameter("plotID");
+		List<Course> courseList = courseService.getListByPlotID(Integer.valueOf(plotID));
+		InitUtil.iniSystem(model);
+		model.addAttribute("courseList",courseList);
+		return "manage/courseListPage";
+	}
+	
+	@RequestMapping("/editCoursePage.action")
+	public String editCoursePage(HttpServletRequest request,Model model){
+		String courseID = request.getParameter("courseID");
+		Course course = courseService.getOne(Integer.valueOf(courseID));
+		model.addAttribute("course",course);
+		InitUtil.iniSystem(model);
+		return "manage/editCoursePage";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/editCourse.action")
+	public String editCourse(HttpServletRequest request){
+		try{
+			String courseID = request.getParameter("courseID");
+			String plotID = request.getParameter("plotID");
+			String userID = request.getParameter("userID_");
+			String name = request.getParameter("name_");
+			String url = request.getParameter("url_");
+			
+			Course course = new Course();
+			course.setId(Integer.valueOf(courseID));
+			course.setPlotID(Integer.valueOf(plotID));
+			course.setUserID(Integer.valueOf(userID));
+			course.setName(name);
+			course.setUrl(url);
+			courseService.up(course);
+			
+			return "修改成功";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "修改失败";
+	}
+	
+	@RequestMapping("/addCourseWhichPage.action")
+	public String addCourseWhichPage(HttpServletRequest request,Model model){
+		String courseID = request.getParameter("courseID");
+		Course course = courseService.getOne(Integer.valueOf(courseID));
+		model.addAttribute("course",course);
+		InitUtil.iniSystem(model);
+		return "manage/addCourseWhichPage";
+	}
+	
+	@RequestMapping("/addCourseWhich.action")
+	public String addCourseWhich(HttpServletRequest request,Model model){
+		// 动漫的ID
+		Integer courseID = Integer.valueOf(request.getParameter("courseID"));
+		Enumeration<String> enu =request.getParameterNames(); // 取得所有的参数名
+		// 遍历所有参数，得到下标，再跟据下标取参数
+		List<Integer> numList = new ArrayList<Integer>();
+		while(enu.hasMoreElements()){
+			String param = enu.nextElement();
+			int ind = param.indexOf("which");
+			if(ind != -1){// 取课程名
+				String index = param.replace("which", ""); // 取参数后边的下标
+				numList.add(Integer.valueOf(index));
+			}
+		}
 		
-		return "测试连通";
+		// 遍历所有参数，插入数据库
+		for (Integer integer : numList) {
+			String which    = request.getParameter("which"+integer);
+			if(which!=null && !which.isEmpty()){ // 可能会进入空数据
+				String name = request.getParameter("name"+integer); // 子集名
+				String chargeUrl = request.getParameter("chargeUrl"+integer); // 收费URL
+				String freeUrl = request.getParameter("freeUrl"+integer); // 免费URL
+				String status   = request.getParameter("status"+integer); // 状态
+				CourseWhich cw = new CourseWhich();
+				cw.setChargeUrl(chargeUrl);
+				cw.setCourseID(courseID);
+				cw.setFreeUrl(freeUrl);
+				cw.setName(name);
+				cw.setStatus(Integer.valueOf(status));
+				cw.setWhichEpisode(Integer.valueOf(which));
+				courseWhichService.add(cw);
+			}
+		}
+		
+		InitUtil.iniSystem(model);
+		return "manage/index";
+	}
+	
+	@RequestMapping("/getCourseWhichListPage.action")
+	public String getCourseWhichListPage(HttpServletRequest request,Model model){
+		String courseID = request.getParameter("courseID");
+		List<CourseWhich> whichList = courseWhichService.getListByCourseID(Integer.valueOf(courseID));
+		model.addAttribute("whichList",whichList);
+		InitUtil.iniSystem(model);
+		return "manage/courseWhichListPage";
+	}
+	
+	@RequestMapping("/editCourseWhichPage.action")
+	public String editCourseWhichPage(HttpServletRequest request,Model model){
+		String whichID = request.getParameter("whichID");
+		CourseWhich courseWhich = courseWhichService.getOne(Integer.valueOf(whichID));
+		model.addAttribute("courseWhich",courseWhich);
+		InitUtil.iniSystem(model);
+		return "manage/editCourseWhichPage";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/editCourseWhich.action")
+	public String editCourseWhich(HttpServletRequest request){
+		try{
+			String whichID = request.getParameter("whichID");
+			String courseID = request.getParameter("courseID");
+			String whichEpisode = request.getParameter("whichEpisode");
+			String name = request.getParameter("name");
+			String chargeUrl = request.getParameter("chargeUrl");
+			String freeUrl = request.getParameter("freeUrl");
+			String status = request.getParameter("status");
+			
+			CourseWhich cw = new CourseWhich();
+			cw.setChargeUrl(chargeUrl);
+			cw.setCourseID(Integer.valueOf(courseID));
+			cw.setFreeUrl(freeUrl);
+			cw.setId(Integer.valueOf(whichID));
+			cw.setName(name);
+			cw.setStatus(Integer.valueOf(status));
+			cw.setWhichEpisode(Integer.valueOf(whichEpisode));
+			courseWhichService.up(cw);
+			return "修改成功";
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return "修改失败";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/createCourseHtml.action")
+	public String createCourseHtml(HttpServletRequest request){
+		String courseID = request.getParameter("courseID");
+		Course course = courseService.getOne(Integer.valueOf(courseID));
+		List<CourseWhich> whichList = courseWhichService.getListByCourseID(Integer.valueOf(courseID));
+		
+		Map<String,CourseWhich> m = new HashMap<String,CourseWhich>(); // <集数,CourseWhich>
+		// 排序，按照集数排
+		int[] array = new int[whichList.size()];
+		int ar_i = 0;
+		for(CourseWhich which:whichList){
+			array[ar_i] = which.getWhichEpisode();
+			m.put(which.getWhichEpisode()+"", which);
+			ar_i++;
+		}
+		// 冒泡排序，从小到大
+		int temp;
+		for (int i = 0; i < array.length; i++) {
+            for (int j = i+1; j < array.length; j++) {
+                if (array[i] > array[j]) {
+                    temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;  // 两个数交换位置
+                }
+            }
+        }
+		List<CourseWhich> arrayList = new ArrayList<CourseWhich>(); // 用有序的arrayList放入排好的值
+		for (int i = 0; i < array.length; i++) {
+			arrayList.add(m.get(array[i]+""));
+		}
+		for(CourseWhich courseWhich:arrayList){
+			FreeMarkerUtil.createCourse(course, courseWhich, arrayList);
+		}
+		return "成功";
 	}
 	
 }

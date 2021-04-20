@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lianggeshipin.www.dao.ICourseDao">
+    <insert id="add" parameterType="com.lianggeshipin.www.model.Course" keyProperty="id" useGeneratedKeys="true">
+    	INSERT course(id,plot_id,user_id,name,url)
+		VALUE(#{id},#{plotID},#{userID},#{name},#{url});
+    </insert>
+    
+    <delete id="del" parameterType="int">
+    	DELETE FROM course where id=#{id}
+    </delete>
+    
+    <update id="up" parameterType="com.lianggeshipin.www.model.Course">
+    	UPDATE course set plot_id=#{plotID},user_id=#{userID},name=#{name},url=#{url} 
+    	WHERE id=#{id}
+    </update>
+    
+    <select id="getOne" parameterType="int" resultType="com.lianggeshipin.www.model.Course">
+    	SELECT id,plot_ID AS plotID,user_id AS userID,name,url FROM course WHERE id=#{id}
+    </select>
+   
+    <select id="getListByPlotID" parameterType="int" resultType="com.lianggeshipin.www.model.Course">
+    	SELECT id,plot_ID AS plotID,user_id AS userID,name,url FROM course WHERE plot_ID=#{plotID}
+    </select>
+</mapper>

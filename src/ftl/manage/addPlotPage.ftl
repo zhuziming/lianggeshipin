@@ -23,7 +23,8 @@
   <thead>
     <tr>
       <th scope="col">哪一集</th>
-      <th scope="col">标题</th>
+      <th scope="col">中文标题</th>
+      <th scope="col">英文标题</th>
       <th scope="col">中文视频地址</th>
       <th scope="col">英文视频地址</th>
       <th scope="col">图片地址</th>
