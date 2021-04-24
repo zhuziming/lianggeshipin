@@ -8,6 +8,22 @@
 <script src="http://localhost:8080/lianggeshipin/js/jquery.min.js"></script>
 <script src="http://localhost:8080/lianggeshipin/js/video.min.js"></script>
 </head>
+<style type="text/css">
+        .aspect-ratio {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%;
+        }
+    
+    .aspect-ratio iframe {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+    </style>
 <body>
 <div class="container-fluid">
 	<div class="alert alert-success" role="alert">
@@ -15,9 +31,9 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-9 col-md-12 col-sm-12 mb-3">
-			<video  id="my-video1" class="video-js" controls preload="auto"  poster="http://localhost:8080/lianggeshipin/image/test.jpg">
-				<source src="http://localhost:8080/lianggeshipin/mp4/test.mp4" type="video/mp4">
-		  	</video>
+			<div class="aspect-ratio" >
+				<iframe src="//player.bilibili.com/player.html?aid=375156377&bvid=BV14o4y1f7vm&cid=328493193&page=1&&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
+			</div>
 		</div>
 		<div class="col-lg-3 col-md-12 col-sm-12">
 			<a href="#" type="button" class="btn btn-light btn-lg btn-block">vip<span class="float-right">vip</span></a>

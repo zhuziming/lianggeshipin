@@ -10,6 +10,22 @@
 <script src="${jspath}/video.min.js"></script>
 <script src="${jspath}/baidu.js"></script>
 </head>
+<style type="text/css">
+    .aspect-ratio {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 75%;
+    }
+
+	.aspect-ratio iframe {
+	    position: absolute;
+	    width: 100%;
+	    height: 100%;
+	    left: 0;
+	    top: 0;
+	}
+</style>
 <body>
 <div class="container-fluid">
 	<div class="alert alert-success" role="alert">
@@ -17,9 +33,13 @@
 	</div>
 	<div class="row">
 		<div class="col-lg-9 col-md-12 col-sm-12 mb-3">
-			<video  id="my-video1" class="video-js" controls preload="auto"  poster="${indexpath}/courseImg/${course.plotID}/${course.id}.jpg">
-				<source src="${indexpath}/front/getCourse.action?courseWhichID=${courseWhich.id}" type="video/mp4">
-		  	</video>
+			<#if courseWhich.status==1>
+				${courseWhich.freeUrl}
+			<#elseif courseWhich.status==2>
+				<video  id="my-video1" class="video-js" controls preload="auto"  poster="${indexpath}/courseImg/${course.plotID}/${course.id}.jpg">
+					<source src="${indexpath}/front/getCourse.action?courseWhichID=${courseWhich.id}" type="video/mp4">
+			  	</video>
+			</#if>
 		</div>
 		<div class="col-lg-3 col-md-12 col-sm-12">
 			<#list courseWhichList as which>

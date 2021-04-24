@@ -60,20 +60,22 @@ ${(plot.meta)!""}
 			
 		</#list>
 	</div>
-	
-	<div class="alert alert-primary" role="alert">
-	  	英语教程
-	</div>
-	<div class="row">
-		<#list courseList as course>
-		<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
-			<a href="${indexpath}/course/${course.plotID}/${course.id}/1.html">
-				<img class="img-fluid" src="${indexpath}/courseImg/${course.plotID}/${course.id}.jpg"/>
-				<p>${course.name}</p>
-			</a>
+	<#if courseList?? && (courseList?size gt 0) >
+		<div class="alert alert-primary" role="alert">
+	  		英语教程
 		</div>
-		</#list>
-	</div>
+		<div class="row">
+			<#list courseList as course>
+			<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
+				<a href="${indexpath}/course/${course.plotID}/${course.id}/1.html">
+					<img class="img-fluid" src="${indexpath}/courseImg/${course.plotID}/${course.id}.jpg"/>
+					<p>${course.name}</p>
+				</a>
+			</div>
+			</#list>
+		</div>
+	</#if>
+	
 	
 	<div class="alert alert-primary" role="alert">
 	  	台词字幕

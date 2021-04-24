@@ -36,7 +36,7 @@
 	  	<ol class="breadcrumb">
 	  		<#list animatedList as animated>
 		    	<li class="breadcrumb-item active" aria-current="page">
-		    		<a target="_blank" href="${indexpath}/${animated.url}">${(animated.animatedName)!""}</a>
+		    		<a target="_blank" href="${indexpath}/${animated.id}/1.html">${(animated.animatedName)!""}</a>
 		    	</li>
 		    </#list>
 	  	</ol>
