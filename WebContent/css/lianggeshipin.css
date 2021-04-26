@@ -2,3 +2,5 @@
 .index-bgi{background-image: url('http://localhost:8080/lianggeshipin/image/index_back.jpg')}
 .nav-bgi{background-image: url('http://localhost:8080/lianggeshipin/image/index_back_2.jpg')}
 .play-bgi{background-image: url('http://localhost:8080/lianggeshipin/image/index_back_3.jpg')}
+/* 视频点击时 播放与暂停切换 */
+.video-js.vjs-playing .vjs-tech {pointer-events: auto;}

@@ -13,6 +13,7 @@ ${(plot.meta)!""}
 <script src="${jspath}/jquery.min.js"></script>
 <script src="${jspath}/video.min.js"></script>
 <script src="${jspath}/baidu.js"></script>
+
 </head>
 <body>
 <div class="container-fluid">
@@ -31,6 +32,15 @@ ${(plot.meta)!""}
 			<video  id="my-video1" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
 				<source src="${indexpath}/front/getPlay.action?type=ch&plotID=${(plot.id)!""}" type="video/mp4">
 		  	</video>
+		  	<form class="form-inline">
+			  	<div class="form-group mx-sm-3 mb-2">
+			    	<input style="width:100px;" type="text" class="form-control" id="video_ch" placeholder="00:00:00">
+			  	</div>
+			  	<button type="button" onclick="turnTime('ch')" class="btn btn-success mb-2">跳转时间</button>
+			  	<button type="button" onclick="backTime('ch')" class="btn btn-primary mb-2">&lt;&lt;--后退5秒</button>
+			  	<button type="button" onclick="frontTime('ch')" class="btn btn-primary mb-2">快进5秒--&gt;&gt;</button>
+			  	<button type="button" onclick="togetherTime('ch')" class="btn btn-success mb-2">同步英文</button>
+			</form>
 		</div>
 		<div class="col-lg-6 col-md-12 col-sm-12 mb-3">
 			<div class="alert alert-primary" role="alert">
@@ -39,9 +49,33 @@ ${(plot.meta)!""}
 			<video  id="my-video2" class="video-js" controls preload="auto"  poster="${animatedImgPath}/${animated.id}/${plot.imgUrl}">
 				<source src="${indexpath}/front/getPlay.action?type=en&plotID=${(plot.id)!""}" type="video/mp4">
 		  	</video>
+		  	<form class="form-inline">
+			  	<div class="form-group mx-sm-3 mb-2">
+			    	<input style="width:100px;" type="text" class="form-control" id="video_en" placeholder="00:00:00">
+			  	</div>
+			  	<button type="button" onclick="turnTime('en')" class="btn btn-success mb-2">跳转时间</button>
+			  	<button type="button" onclick="backTime('en')" class="btn btn-primary mb-2">&lt;&lt;--后退5秒</button>
+			  	<button type="button" onclick="frontTime('en')" class="btn btn-primary mb-2">快进5秒--&gt;&gt;</button>
+			  	<button type="button" onclick="togetherTime('en')" class="btn btn-success mb-2">同步中文</button>
+			</form>
 		</div>
 	</div>
 	
+	<#if courseList?? && (courseList?size gt 0) >
+		<div class="alert alert-primary" role="alert">
+	  		英语教程
+		</div>
+		<div class="row">
+			<#list courseList as course>
+			<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
+				<a href="${indexpath}/course/${course.plotID}/${course.id}/1.html">
+					<img class="img-fluid" src="${indexpath}/courseImg/${course.plotID}/${course.id}.jpg"/>
+					<p>${course.name}</p>
+				</a>
+			</div>
+			</#list>
+		</div>
+	</#if>
 	
 	<div class="alert alert-primary" role="alert">
 	  	选集
@@ -60,21 +94,7 @@ ${(plot.meta)!""}
 			
 		</#list>
 	</div>
-	<#if courseList?? && (courseList?size gt 0) >
-		<div class="alert alert-primary" role="alert">
-	  		英语教程
-		</div>
-		<div class="row">
-			<#list courseList as course>
-			<div class="col-xl-3 col-lg-3 col-sm-4 col-6">
-				<a href="${indexpath}/course/${course.plotID}/${course.id}/1.html">
-					<img class="img-fluid" src="${indexpath}/courseImg/${course.plotID}/${course.id}.jpg"/>
-					<p>${course.name}</p>
-				</a>
-			</div>
-			</#list>
-		</div>
-	</#if>
+	
 	
 	
 	<div class="alert alert-primary" role="alert">
@@ -88,12 +108,7 @@ ${(plot.meta)!""}
 </div>
 </body>
 </html>
-<script type="text/javascript">
-	$('#my-video1').bind('contextmenu',function() { return false; });
-	$('#my-video2').bind('contextmenu',function() { return false; });
-	var myPlayer = videojs('my-video1',{ autoplay: true,fluid: true }, function () { });
-	var myPlayer = videojs('my-video2',{ autoplay: false,fluid: true }, function () { });
-</script>
+<script src="${jspath}/play.js"></script>
 <script type="text/javascript">
 	$(document).ready(function (){
 		$.ajax({
