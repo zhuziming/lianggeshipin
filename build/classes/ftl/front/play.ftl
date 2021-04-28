@@ -109,18 +109,3 @@ ${(plot.meta)!""}
 </body>
 </html>
 <script src="${jspath}/play.js"></script>
-<script type="text/javascript">
-	$(document).ready(function (){
-		$.ajax({
-		   type: "POST",
-		   url: "${indexpath}/front/isVip.action",
-		   dataType:"json",
-		   success: function(msg){
-			   	if(msg.success==2){
-			   		$('#my-video1').append("<div style='position:absolute; top:50px; left:50px; font-size:30px; color:red; z-index:1000;'><a href='${indexpath}/vip.html' target='_Blank' style='color:red;'>你还不是会员，请先充值，会员1天1元，1月8元。<br>也可以免费获得会员，详情请点击...</a></div>");
-			   		$('#my-video2').append("<div style='position:absolute; top:50px; left:50px; font-size:30px; color:red; z-index:1000;'><a href='${indexpath}/vip.html' target='_Blank' style='color:red;'>你还不是会员，请先充值，会员1天1元，1月8元。<br>也可以免费获得会员，详情请点击...</a></div>");
-			   	}
-		   }
-		});
-	});
-</script>

@@ -8,6 +8,7 @@
 <link rel="shortcut icon" type="favicon.ico" href="${imgpath}/lianggeshipin.ico">
 <link rel="icon" href="data:;base64,=">
 <script src="${indexpath}/js/jquery.min.js"></script>
+<script src="${indexpath}/js/jquery.lazyload.js"></script>
 <script src="${indexpath}/js/baidu.js"></script>
 <script src="${indexpath}/js/lianggeshipin.js"></script>
 <title>两个视频</title>
@@ -52,10 +53,10 @@
 				<#list plotlist as plot>
 					<div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 				      	<a target="_blank" href="${indexpath}/${animated.id}/${plot.whichEpisode}.html">
-				      		<img src="${animatedImgPath}/${animated.id}/${plot.imgUrl}" class="img-fluid" alt="${plot.plotNameCh}">
+				      		<img src="${imgpath}/loading.jpg" data-original="${animatedImgPath}/${animated.id}/${plot.imgUrl}" class="img-fluid lazyload" alt="${plot.plotNameCh}">
 				      		<p class="l-plot-sort">${(plot.plotNameCh)!""}</p>
 				      	</a>
-				    </div>
+					</div>
 			    </#list>
 				<div id="${animated.id}" pageNum="0" class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
 			      	<a href="javascript:showMore('${animated.id}');">
@@ -125,3 +126,4 @@
 		});
 	});
 </script>
+<script>$(function() {$("img.lazyload").lazyload()});</script>
